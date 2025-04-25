@@ -1,0 +1,11 @@
+---
+title: "Hands-on_Exercise 3 - Programming Interactive Data Visualisation with R"
+author: "Nguyen Nguyen Ha (Summer)"
+format:
+  html:
+    css: styles.css
+    toc: true
+---
+
+# 3.1. Learning Outcome
+

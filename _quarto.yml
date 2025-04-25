@@ -11,6 +11,8 @@ website:
           href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
         - text: "Hands-on Exerise 2 - Beyond ggplot2 Fundamentals"
           href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html"
+        - text: "Hands-on Exerise 3 - Programming Interactive Data Visualisation with R"
+          href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html"
     right:   
       - href: index.qmd
         text: Home
@@ -29,6 +31,8 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
           - text: "2 - Beyond ggplot2 Fundamentals"
             href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html"
+          - text: "3 - Programming Interactive Data Visualisation with R"
+            href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html"
     
 
 format:
