@@ -1,0 +1,41 @@
+project:
+  type: website
+
+website:
+  title: "ISSS608-VAA"
+  navbar:
+    left:
+    - text: "Hands-on Exercise"
+      menu: 
+        - text: "Hands-on Exerise 1 - A Layered Grammar of Graphics: ggplot2 methods"
+          href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
+        - text: "Hands-on Exerise 2 - Beyond ggplot2 Fundamentals"
+          href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html"
+    right:   
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+  sidebar:
+    style: floating
+    search: true
+    collapse-level: 2
+    contents:
+      - text: "Home"
+        href: "index.qmd"
+      - section: "Hands-on Exercise"
+        contents:
+          - text: "1 - A Layered Grammar of Graphics: ggplot2 methods"
+            href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
+          - text: "2 - Beyond ggplot2 Fundamentals"
+            href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html"
+    
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+
+editor: visual
+

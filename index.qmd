@@ -1,0 +1,25 @@
+---
+title: ""
+format:
+  html:
+    css: styles.css
+    toc: true
+    toc-location: left 
+---
+
+
+
+```{=html}
+<body class="page-index">
+<div class="landing-wrapper">
+  <div class="landing-content">
+    <h1 class="fade-in">Visual Analytics and Applications</h1>
+    <hr />
+    <p class="fade-in delay-1"><strong>Welcome to <span class="highlight">Nguyen Ha (Summer)'s portfolio</span>.</strong></p>
+    <p class="fade-in delay-2"> This website is crafted as part of the <strong>ISSS608 Visual Analytics and Applications</strong> course at <strong>Singapore Management University (SMU)</strong>, under the guidance of <strong>Professor Kam Tin Seong</strong>.</p>
+
+    <!-- 🎯 Image or chart block -->
+    <img src="images/2.png" alt="Welcome Chart" class="fade-in chart-animate" />
+  </div>
+</div>
+```

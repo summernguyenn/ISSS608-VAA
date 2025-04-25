@@ -1,0 +1,150 @@
+/* css styles */
+h1, h2, h3, h4 {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  margin-top: 1.5em;
+  color: #2b4162;
+}
+
+h1 {
+  font-size: 2.2em;
+  border-bottom: 2px solid #6c757d;
+  padding-bottom: 0.2em;
+}
+
+h2 {
+  font-size: 1.7em;
+  color: #3b5998;
+}
+
+h3 {
+  font-size: 1.4em;
+  color: #5f6368;
+  font-style: italic;
+}
+
+
+.sidebar-navigation {
+  background-color: #f9fafe; /* light pastel background */
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 14px;
+  width: 220px;
+
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05); /* soft shadow */
+  border-right: 1px solid #e0e6ed; /* subtle border */
+}
+
+.sidebar-navigation {
+  background-color: #f9fafe;
+  padding-left: 0px; /* Shift content left */
+  padding-right: 16px;
+  font-size: 14px;
+  width: 220px;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+  border-right: 1px solid #e0e6ed;
+}
+
+/* Reduce indentation inside each sidebar item */
+.sidebar-navigation .sidebar-item,
+.sidebar-navigation li,
+.sidebar-navigation a {
+  padding-left: 0px !important;
+  padding-right: opx;
+  margin-left: 0 !important;
+}
+
+.sidebar-navigation a.active {
+  background-color: #eaeef2;  /* light highlight */
+  font-weight: bold;
+  color: #0366d6; /* GitHub-like link color */
+  border-radius: 6px;
+  padding-left: 12px;
+}
+
+
+```{css}
+/* Overall landing layout */
+.landing-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-align: center;
+}
+
+.landing-content {
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade-in animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.5s;
+}
+
+.delay-2 {
+  animation-delay: 1s;
+}
+
+/* Text styles */
+.landing-wrapper h1 {
+  font-size: 3rem;
+  max-width: 100%;
+  color: #2c3e50;
+}
+
+.highlight {
+  color: #1a73e8;
+  font-weight: bold;
+}
+
+hr {
+  margin: 20px auto;
+  width: 60%;
+  border: 1px solid #ccc;
+}
+
+.landing-wrapper p {
+  max-width: 100%;
+  font-size: 1.25rem;
+  margin-top: 10px;
+}
+```
+```{css}
+.chart-animate {
+  width: 400px;
+  max-width: 80%;
+  margin-top: 40px;
+  animation: flyIn 1.2s ease-out forwards;
+}
+
+/* Flying-in animation */
+@keyframes flyIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+```
+
+.page-index .page-columns .content {
+  max-width: 1200px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
