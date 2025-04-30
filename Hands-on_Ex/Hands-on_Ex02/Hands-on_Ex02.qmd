@@ -2,7 +2,7 @@
 title: "Hands-on_Exercise 2 - Beyond ggplot2 Fundamentals"
 author: "Nguyen Nguyen Ha (Summer)"
 date: "April 24, 2025"
-date-modified:  "last modified"
+date-modified:  "April 27,2025"
 format:
   html:
     css: styles.css
