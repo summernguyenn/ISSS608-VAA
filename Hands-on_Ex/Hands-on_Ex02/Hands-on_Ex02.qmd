@@ -1,10 +1,15 @@
 ---
 title: "Hands-on_Exercise 2 - Beyond ggplot2 Fundamentals"
 author: "Nguyen Nguyen Ha (Summer)"
+date: "April 24, 2025"
+date-modified:  "last modified"
 format:
   html:
     css: styles.css
     toc: true
+execute: 
+  warning: false
+  freeze: true
 ---
 
 # 2.1. Overview
@@ -544,15 +549,17 @@ Figure below is created by combining patchwork and theme_economist() of ggthemes
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 patchwork <- (p1 / p2) | p3 + 
-  plot_layout(widths = c(1, 0)) 
-
-patchwork & 
-  theme_economist() & 
+  plot_layout(widths = c(1, 0)) +
+  plot_annotation(
+    title = stringr::str_wrap("English scores versus Maths scores for Primary 3 students", width = 20)
+  ) &
+  theme_economist() &
   theme(
-    plot.title = element_text(size = 12, face = "bold"),
-    axis.title = element_text(size = 10),
-    strip.text = element_text(size = 10)
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
   )
+
+patchwork
 ```
 
 ### The code

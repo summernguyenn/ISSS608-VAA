@@ -1,10 +1,15 @@
 ---
 title: "Hands-on Exercise 1 - A Layered Grammar of Graphics: ggplot2 methods"
 author: "Nguyen Nguyen Ha (Summer)"
+date: "April 20, 2025"
+date-modified:  "last modified"
 format:
   html:
     css: styles.css
     toc: true
+execute: 
+  warning: false
+  freeze: true
 ---
 
 # 1.2. Getting Started
