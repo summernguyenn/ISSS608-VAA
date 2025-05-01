@@ -15,6 +15,10 @@ website:
           href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html"
         - text: "Hands-on Exerise 4 - Programming Animated Statistical Graphics with R"
           href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html"
+    - text: "Take-home Exercise"
+      menu: 
+        - text: "Take-home Exercise 1"
+          href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"
     right:   
       - href: index.qmd
         text: Home
@@ -37,7 +41,10 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html"
           - text: "4 - Programming Animated Statistical Graphics with R"
             href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html"
-    
+      - section: "Take-home Exercise"
+        contents:
+          - text: "Take-home Exercise 1"
+            href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"
 
 format:
   html:

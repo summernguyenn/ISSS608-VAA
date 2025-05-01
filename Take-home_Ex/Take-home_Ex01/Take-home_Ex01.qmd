@@ -1,0 +1,12 @@
+---
+title: "Take-home Exercise 1"
+date: "May 1, 2025"
+date-modified:  "May 1, 2025"
+format:
+  html:
+    css: styles.css
+    toc: true
+execute: 
+  warning: false
+  freeze: true
+---
