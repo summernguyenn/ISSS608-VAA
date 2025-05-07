@@ -25,7 +25,7 @@ website:
           href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex044.html"
     - text: "Take-home Exercise"
       menu: 
-        - text: "Take-home Exercise 1"
+        - text: "Take-home Exercise 1 - Phase 1"
           href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"
     right:   
       - href: index.qmd
@@ -59,7 +59,7 @@ website:
             href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex044.html"
       - section: "Take-home Exercise"
         contents:
-          - text: "Take-home Exercise 1"
+          - text: "Take-home Exercise 1 - Phase 1"
             href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"
 
 format:
