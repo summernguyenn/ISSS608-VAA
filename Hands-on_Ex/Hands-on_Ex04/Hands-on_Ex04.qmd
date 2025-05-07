@@ -1,5 +1,5 @@
 ---
-title: "Hands-on_Exercise 4 - Programming Animated Statistical Graphics with R"
+title: "Hands-on_Exercise 3.2 - Programming Animated Statistical Graphics with R"
 author: "Nguyen Nguyen Ha (Summer)"
 date: "April 30, 2025"
 date-modified:  "May 1, 2025"
@@ -13,13 +13,13 @@ execute:
 ---
 
 # 4.1. Overview
+
 When telling a visually driven data story, **animated graphics** tend to draw more attention and leave a stronger impression than static visuals. In this hands-on section, you'll learn how to build animated data visualizations using the `gganimate` and `plotly` R packages.
 
-You'll also apply:
-- `tidyr` for reshaping and organizing data  
+You'll also apply: - `tidyr` for reshaping and organizing data\
 - `dplyr` for data wrangling, filtering, and transformation
 
-:::{.callout-tip title="Why animation matters"}
+::: {.callout-tip title="Why animation matters"}
 Motion helps highlight patterns over time, build engagement, and illustrate dynamic trends that static plots can't show effectively.
 :::
 
@@ -27,20 +27,17 @@ Motion helps highlight patterns over time, build engagement, and illustrate dyna
 
 Animation in R doesn’t make the plot itself move. Instead, it creates **many static frames** (individual plots), each representing a snapshot in time or state, and stitches them together to simulate motion—just like a flipbook or cartoon.
 
-Each frame is:
-- A subset of the dataset
-- A new version of the same plot (but with different values)
-- Rendered in sequence to create flow
+Each frame is: - A subset of the dataset - A new version of the same plot (but with different values) - Rendered in sequence to create flow
 
 This structure is perfect for showing **time series changes**, **category transitions**, or **movement through space**.
 
 ![Animation Frame Concept](images/2.png)
 
-:::{.callout-note title="Note"}
+::: {.callout-note title="Note"}
 What drives the animation is a variable used to split the dataset—commonly time (e.g., year, month) or a sequence of states.
 :::
 
-:::{.callout-tip title="Tip"}
+::: {.callout-tip title="Tip"}
 Use `transition_*()` functions in `gganimate` like `transition_time()` or `transition_states()` to define how the animation progresses between frames.
 :::
 
@@ -50,20 +47,21 @@ Before diving into the steps for creating animated statistical graphs, it's esse
 
 **Key Terms**
 
-1. **Frame**  
-   In an animated plot, each **frame** represents either a point in time (e.g., a year) or a specific category (e.g., region or class). When the frame changes, the plot updates to reflect new values for that subset of data.
+1.  **Frame**\
+    In an animated plot, each **frame** represents either a point in time (e.g., a year) or a specific category (e.g., region or class). When the frame changes, the plot updates to reflect new values for that subset of data.
 
-2. **Animation Attributes**  
-   These are settings that **control animation behavior**, such as:
-   - Duration of each frame  
-   - Easing function for transitions (e.g., linear, cubic-in-out)  
-   - Whether the animation loops or starts from the current frame
+2.  **Animation Attributes**\
+    These are settings that **control animation behavior**, such as:
 
-:::{.callout-tip title="Tip"}
-Before creating animated graphs, ask:  
-➡️ *Does this animation add real value, or is it just visual noise?*  
+    -   Duration of each frame\
+    -   Easing function for transitions (e.g., linear, cubic-in-out)\
+    -   Whether the animation loops or starts from the current frame
 
-For **exploratory analysis**, static plots might be more efficient.  
+::: {.callout-tip title="Tip"}
+Before creating animated graphs, ask:\
+➡️ *Does this animation add real value, or is it just visual noise?*
+
+For **exploratory analysis**, static plots might be more efficient.\
 But for **presentations or storytelling**, a **well-timed animation** can boost clarity, engagement, and emotional connection—especially when explaining changes over time.
 :::
 
@@ -73,11 +71,11 @@ But for **presentations or storytelling**, a **well-timed animation** can boost 
 
 Before creating animated visualizations, ensure the following R packages are installed and loaded:
 
-- [**plotly**](https://plotly.com/r/): For building interactive statistical graphics.
-- [**gganimate**](https://gganimate.com/): A `ggplot2` extension for animated plots.
-- [**gifski**](https://cran.r-project.org/web/packages/gifski/): Converts video frames into animated GIFs using high-quality color handling and dithering.
-- [**gapminder**](https://cran.r-project.org/web/packages/gapminder/): Contains excerpted data from [Gapminder.org](https://www.gapminder.org/), especially useful for country-based animations.
-- [**tidyverse**](https://www.tidyverse.org/): A collection of packages for data wrangling, visualization, and transformation.
+-   [**plotly**](https://plotly.com/r/): For building interactive statistical graphics.
+-   [**gganimate**](https://gganimate.com/): A `ggplot2` extension for animated plots.
+-   [**gifski**](https://cran.r-project.org/web/packages/gifski/): Converts video frames into animated GIFs using high-quality color handling and dithering.
+-   [**gapminder**](https://cran.r-project.org/web/packages/gapminder/): Contains excerpted data from [Gapminder.org](https://www.gapminder.org/), especially useful for country-based animations.
+-   [**tidyverse**](https://www.tidyverse.org/): A collection of packages for data wrangling, visualization, and transformation.
 
 Use the following code to install and load them efficiently:
 
@@ -88,18 +86,15 @@ pacman::p_load(
 )
 ```
 
-:::{.callout-tip title="Tip"} 
-The pacman::p_load() function automatically checks if a package is installed—if not, it installs it before loading. It's a smart and concise way to manage dependencies. 
+::: {.callout-tip title="Tip"}
+The pacman::p_load() function automatically checks if a package is installed—if not, it installs it before loading. It's a smart and concise way to manage dependencies.
 :::
 
 ## 4.2.2 Importing the Data
 
 This section demonstrates how to import the `Data` worksheet from the **GlobalPopulation.xls** Excel workbook and prepare it for animation.
 
-The objective includes:
-- Reading the Excel file
-- Converting the `Country` and `Continent` columns to factors
-- Converting the `Year` column to integer format
+The objective includes: - Reading the Excel file - Converting the `Country` and `Continent` columns to factors - Converting the `Year` column to integer format
 
 **Step 1: Initial Version Using `mutate_each()` (Deprecated)**
 
@@ -111,15 +106,13 @@ globalPop <- read_xls("data/GlobalPopulation.xls",
   mutate(Year = as.integer(Year))
 ```
 
-:::{.callout-note title="Things to Learn"}
-
-- `read_xls()` from the readxl package is used to import Excel worksheets.
-- `mutate_each()` combined with funs() (both deprecated) applies transformations across selected columns.
-- `mutate()` with `as.integer()` updates the Year column to numeric format. 
+::: {.callout-note title="Things to Learn"}
+-   `read_xls()` from the readxl package is used to import Excel worksheets.
+-   `mutate_each()` combined with funs() (both deprecated) applies transformations across selected columns.
+-   `mutate()` with `as.integer()` updates the Year column to numeric format.
 :::
 
-**Step 2: Updated Version Using mutate_at()**
-To align with newer versions of `dplyr`, `mutate_each()` is replaced with `mutate_at()`.
+**Step 2: Updated Version Using mutate_at()** To align with newer versions of `dplyr`, `mutate_each()` is replaced with `mutate_at()`.
 
 ```{r}
 col <- c("Country", "Continent")
@@ -129,12 +122,11 @@ globalPop <- read_xls("data/GlobalPopulation.xls",
   mutate(Year = as.integer(Year))
 ```
 
-:::{.callout-warning title="Deprecated!"} 
+::: {.callout-warning title="Deprecated!"}
 `mutate_at()` remains functional but is soft-deprecated in favor of the more consistent `across()` syntax.
 :::
 
-**Step 3: Final (Recommended) Version Using `across()`**
-The most up-to-date and robust syntax utilizes` mutate()` with `across()`.
+**Step 3: Final (Recommended) Version Using `across()`** The most up-to-date and robust syntax utilizes`mutate()` with `across()`.
 
 ```{r}
 col <- c("Country", "Continent")
@@ -144,8 +136,8 @@ globalPop <- read_xls("data/GlobalPopulation.xls",
   mutate(Year = as.integer(Year))
 ```
 
-:::{.callout-tip title="Tip"} 
-The across() function is the recommended approach for applying transformations to multiple columns. It ensures compatibility with current and future versions of the tidyverse. 
+::: {.callout-tip title="Tip"}
+The across() function is the recommended approach for applying transformations to multiple columns. It ensures compatibility with current and future versions of the tidyverse.
 :::
 
 # 4.3. Animated Data Visualisation: `gganimate` Methods
@@ -154,11 +146,11 @@ The `gganimate` package extends the grammar of graphics as implemented by `ggplo
 
 Key functions provided by `gganimate` include:
 
-- `transition_*()` — defines how data should spread out and relate to itself over time.
-- `view_*()` — controls how positional scales change throughout the animation.
-- `shadow_*()` — displays data from other points in time to provide visual context.
-- `enter_*()` / `exit_*()` — manages how new data appears or disappears during the animation.
-- `ease_aes()` — determines how aesthetics should transition smoothly from one frame to another.
+-   `transition_*()` — defines how data should spread out and relate to itself over time.
+-   `view_*()` — controls how positional scales change throughout the animation.
+-   `shadow_*()` — displays data from other points in time to provide visual context.
+-   `enter_*()` / `exit_*()` — manages how new data appears or disappears during the animation.
+-   `ease_aes()` — determines how aesthetics should transition smoothly from one frame to another.
 
 ## 4.3.1. Building a Static Population Bubble Plot
 
@@ -181,8 +173,8 @@ ggplot(globalPop, aes(x = Old, y = Young,
 
 This section adds animation to the previously constructed bubble plot using `gganimate`.
 
-- `transition_time()` from **gganimate** is used to create transitions across distinct time states (e.g., `Year`).
-- `ease_aes()` controls the easing of aesthetics during transitions. The default is `'linear'`, with alternatives including `quadratic`, `cubic`, `quartic`, `quintic`, `sine`, `circular`, `exponential`, `elastic`, `back`, and `bounce`.
+-   `transition_time()` from **gganimate** is used to create transitions across distinct time states (e.g., `Year`).
+-   `ease_aes()` controls the easing of aesthetics during transitions. The default is `'linear'`, with alternatives including `quadratic`, `cubic`, `quartic`, `quintic`, `sine`, `circular`, `exponential`, `elastic`, `back`, and `bounce`.
 
 The following code generates the animated bubble chart:
 
@@ -226,7 +218,7 @@ The `plotly` R package supports frame-by-frame animations using the `frame` aest
 
 This section demonstrates how to animate a bubble chart using `ggplotly()`. The animation is driven by the `frame` aesthetic, which enables transitions between yearly data points.
 
-::: panel-tabset
+:::: panel-tabset
 ### The plot
 
 ```{r, echo=FALSE}
@@ -269,14 +261,13 @@ gg <- ggplot(globalPop,
 ggplotly(gg)
 ```
 
-:::{.callout-tip title="Things to learn from the code chunk above"} 
-
-- Appropriate ggplot2 functions are used to create a static bubble plot. The output is then saved as an R object called gg.
-- `ggplotly()` is then used to convert the R graphic object into an animated svg object.
+::: {.callout-tip title="Things to learn from the code chunk above"}
+-   Appropriate ggplot2 functions are used to create a static bubble plot. The output is then saved as an R object called gg.
+-   `ggplotly()` is then used to convert the R graphic object into an animated svg object.
 :::
-:::
+::::
 
-Notice that although `show.legend = FALSE` argument was used, the legend still appears on the plot. To overcome this problem,` theme(legend.position='none')` should be used as shown in the plot and code chunk below.
+Notice that although `show.legend = FALSE` argument was used, the legend still appears on the plot. To overcome this problem,`theme(legend.position='none')` should be used as shown in the plot and code chunk below.
 
 ::: panel-tabset
 ### The plot
@@ -321,6 +312,7 @@ ggplotly(gg)
 :::
 
 ## 4.4.2. Building an animated bubble plot: `plot_ly() method`
+
 In this sub-section, you will learn how to create an animated bubble plot by using `plot_ly()` method.
 
 ::: panel-tabset
@@ -366,6 +358,7 @@ bp
 ### [**Practice: Age Distribution Over Time Using `ggplot2` and `gganimate`**]{style="color:#2E86C1; background-color: #FFFF99;"}
 
 **a. Using `ggplot2`**
+
 ```{r}
 ggplot(globalPop, aes(x = Old, fill = factor(Year))) +
   geom_density(alpha = 0.5) +
@@ -375,11 +368,12 @@ ggplot(globalPop, aes(x = Old, fill = factor(Year))) +
   theme_minimal()
 ```
 
-:::{.callout-important title="Purpose"} 
-This non-animated plot provides quantitative insight about shifting population structure. It complements the animated bubble plot by showing statistical distribution rather than motion. 
+::: {.callout-important title="Purpose"}
+This non-animated plot provides quantitative insight about shifting population structure. It complements the animated bubble plot by showing statistical distribution rather than motion.
 :::
 
 **b. Using `gganimate`**
+
 ```{r}
 ggplot(globalPop, aes(x = Old, fill = factor(Year))) +
   geom_density(alpha = 0.6, colour = "white") +
@@ -391,13 +385,14 @@ ggplot(globalPop, aes(x = Old, fill = factor(Year))) +
   transition_time(Year) +
   ease_aes('cubic-in-out')
 ```
-:::{.callout-important title="Animated Bonus Insight"} 
-This animated density plot highlights demographic shifts in aging. The rightward movement of the peak density over time suggests an increase in elderly population — a key demographic trend that complements the animated bubble plots. 
+
+::: {.callout-important title="Animated Bonus Insight"}
+This animated density plot highlights demographic shifts in aging. The rightward movement of the peak density over time suggests an increase in elderly population — a key demographic trend that complements the animated bubble plots.
 :::
 
 # 4.5. Reference
 
-- [Getting Started](https://gganimate.com/articles/gganimate.html) – Official `gganimate` documentation for basic usage.
-- Visit this [example](https://rpubs.com/) for an advanced implementation of `gganimate` created by a senior student.
-- [Building an Animation Step-by-Step with gganimate](https://gganimate.com/articles/gganimate.html) – A structured guide on constructing animations.
-- [Creating a Composite GIF with Multiple gganimate Panels](https://gganimate.com/articles/gganimate.html#composite) – Guide on combining multiple animated panels into one output.
+-   [Getting Started](https://gganimate.com/articles/gganimate.html) – Official `gganimate` documentation for basic usage.
+-   Visit this [example](https://rpubs.com/) for an advanced implementation of `gganimate` created by a senior student.
+-   [Building an Animation Step-by-Step with gganimate](https://gganimate.com/articles/gganimate.html) – A structured guide on constructing animations.
+-   [Creating a Composite GIF with Multiple gganimate Panels](https://gganimate.com/articles/gganimate.html#composite) – Guide on combining multiple animated panels into one output.
