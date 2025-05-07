@@ -53,9 +53,9 @@ website:
             href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex401.html"
           - text: "4.2 - Visual Statistical Analysis"
             href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex042.html"
-          - text: "4.3 - Hands-on Exercise 4.3 - Visualising Uncertainty"
+          - text: "4.3 - Visualising Uncertainty"
             href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex043.html"
-          - text: "4.4 - Hands-on Exercise 4.4 - Funnel Plots for Fair Comparisons"
+          - text: "4.4 - Funnel Plots for Fair Comparisons"
             href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex044.html"
       - section: "Take-home Exercise"
         contents:
