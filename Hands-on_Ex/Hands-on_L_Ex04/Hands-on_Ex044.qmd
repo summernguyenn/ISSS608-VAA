@@ -233,7 +233,7 @@ p
 
 ## 5.4. Interactive Funnel Plot: plotly + ggplot2
 
-The funnel plot created using ggplot2 functions can be made interactive with `ggplotly()` of **plotly** package.
+The funnel plot created using `ggplot2` functions can be made interactive with `ggplotly()` of **plotly** package.
 
 ```{r}
 fp_ggplotly <- ggplotly(p,
