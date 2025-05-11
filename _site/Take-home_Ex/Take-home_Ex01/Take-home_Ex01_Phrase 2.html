@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nguyen Nguyen Ha (Summer)">
+<meta name="dcterms.date" content="2025-05-01">
+
+<title>Take-home Exercise 1 - Phase 2 – ISSS608-VAA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ISSS608-VAA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
+ <span class="dropdown-text">Hands-on Exerise 1 - A Layered Grammar of Graphics: ggplot2 methods</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
+ <span class="dropdown-text">Hands-on Exerise 2 - Beyond ggplot2 Fundamentals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html">
+ <span class="dropdown-text">Hands-on Exerise 3.1 - Programming Interactive Data Visualisation with R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html">
+ <span class="dropdown-text">Hands-on Exerise 3.2 - Programming Animated Statistical Graphics with R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex401.html">
+ <span class="dropdown-text">Hands-on Exerise 4.1 - Visualising Distribution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex042.html">
+ <span class="dropdown-text">Hands-on Exerise 4.2 - Visual Statistical Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex043.html">
+ <span class="dropdown-text">Hands-on Exerise 4.3 - Visual Statistical Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex044.html">
+ <span class="dropdown-text">Hands-on Exerise 4.4 - Funnel Plots for Fair Comparisons</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html">
+ <span class="dropdown-text">Hands-on Exerise 5 - Modelling, Visualising and Analysing Network Data with R</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html">
+ <span class="dropdown-text">Take-home Exercise 1 - Phase 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01_Phrase 2.html">
+ <span class="dropdown-text">Take-home Exercise 1 - Phase 2</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html">Take-home Exercise</a></li><li class="breadcrumb-item"><a href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01_Phrase 2.html">Take-home Exercise 1 - Phase 2</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Hands-on Exercise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - A Layered Grammar of Graphics: ggplot2 methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Beyond ggplot2 Fundamentals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 - Programming Interactive Data Visualisation with R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 - Programming Animated Statistical Graphics with R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex401.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 - Visualising Distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex042.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 - Visual Statistical Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex043.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 - Visualising Uncertainty</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex044.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 - Funnel Plots for Fair Comparisons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Modelling, Visualising and Analysing Network Data with R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Take-home Exercise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Take-home Exercise 1 - Phase 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01_Phrase 2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Take-home Exercise 1 - Phase 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
+  <li><a href="#importing-data-and-packages" id="toc-importing-data-and-packages" class="nav-link" data-scroll-target="#importing-data-and-packages">2. Importing data and packages</a></li>
+  <li><a href="#orignal-visualization---using-box-plot-based-on-age-range" id="toc-orignal-visualization---using-box-plot-based-on-age-range" class="nav-link" data-scroll-target="#orignal-visualization---using-box-plot-based-on-age-range">3. Orignal visualization - Using Box Plot based on Age Range</a></li>
+  <li><a href="#three-good-design-principles" id="toc-three-good-design-principles" class="nav-link" data-scroll-target="#three-good-design-principles">4. Three good design principles</a></li>
+  <li><a href="#three-areas-for-further-improvement" id="toc-three-areas-for-further-improvement" class="nav-link" data-scroll-target="#three-areas-for-further-improvement">5. Three areas for further improvement</a></li>
+  <li><a href="#makeover-version" id="toc-makeover-version" class="nav-link" data-scroll-target="#makeover-version">6. Makeover version</a>
+  <ul class="collapse">
+  <li><a href="#how-the-makeover-tackles-the-aforementioned-limitations" id="toc-how-the-makeover-tackles-the-aforementioned-limitations" class="nav-link" data-scroll-target="#how-the-makeover-tackles-the-aforementioned-limitations">6.1. <strong>How the makeover tackles the aforementioned limitations</strong>:</a></li>
+  <li><a href="#addition-population-is-distributed-across-planning-areas-pas-within-each-functional-age-fa-band-with-interactivity" id="toc-addition-population-is-distributed-across-planning-areas-pas-within-each-functional-age-fa-band-with-interactivity" class="nav-link" data-scroll-target="#addition-population-is-distributed-across-planning-areas-pas-within-each-functional-age-fa-band-with-interactivity">6.2. <strong>Addition</strong>: Population is distributed across Planning Areas (PAs) within each Functional Age (FA) Band with <code>Interactivity</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html">Take-home Exercise</a></li><li class="breadcrumb-item"><a href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01_Phrase 2.html">Take-home Exercise 1 - Phase 2</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Take-home Exercise 1 - Phase 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nguyen Nguyen Ha (Summer) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 1, 2025</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 4, 2025</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<p>This exercise involves reviewing a classmate’s submission - <a href="https://iss608-vaa.netlify.app/take-home_ex/take-home_ex01/take%20home%20exercise%201">Enrico Sebastian</a>. The review will identify three effective design principles applied and three areas where the visualization can be improved. Based on this feedback, a redesigned version of the data visualization will be created.</p>
+</section>
+<section id="importing-data-and-packages" class="level1">
+<h1>2. Importing data and packages</h1>
+<p>First, all of his used packages and data are loaded.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">library</span>(<span class="st">"lubridate"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, readxl, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>               janitor, lubridate, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>               ggplot2, ggthemes, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>               scales, ggridges, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>               ggdist, patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Resident_Data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/singapore_population.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Resident_Data <span class="ot">&lt;-</span> Resident_Data <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">FA =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      Age <span class="sc">&lt;=</span> <span class="dv">60</span> <span class="sc">~</span> <span class="st">"&lt;= 60"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      Age <span class="sc">&gt;</span> <span class="dv">60</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span> <span class="dv">80</span> <span class="sc">~</span> <span class="st">"&gt;60 to 80"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      Age <span class="sc">&gt;</span> <span class="dv">80</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"&gt;80 to 100"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      Age <span class="sc">&gt;</span> <span class="dv">100</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span> <span class="dv">120</span> <span class="sc">~</span> <span class="st">"&gt;100 to 120"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      Age <span class="sc">&gt;</span> <span class="dv">120</span> <span class="sc">~</span> <span class="st">"&gt;120"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not Available"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="orignal-visualization---using-box-plot-based-on-age-range" class="level1">
+<h1>3. Orignal visualization - Using Box Plot based on Age Range</h1>
+<ul>
+<li><strong>Purpose</strong>: The classmate used a box plot to visually present the distribution and variability of the data, aiming to compare population distributions across different Functional Age (FA) Bands.</li>
+</ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex01_Phrase-2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>FA_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"&lt;= 60"</span>, <span class="st">"&gt;60 to 80"</span>, <span class="st">"&gt;80 to 100"</span>, <span class="st">"&gt;100 to 120"</span>, <span class="st">"&gt;120"</span>, <span class="st">"Not Available"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Resident_Data<span class="sc">$</span>FA <span class="ot">&lt;-</span> <span class="fu">factor</span>(Resident_Data<span class="sc">$</span>FA, <span class="at">levels =</span> FA_order)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Resident_Data, <span class="fu">aes</span>(<span class="at">x =</span> FA, <span class="at">y =</span> Pop)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Population by Functional Age Range (FA)"</span>, <span class="at">x =</span> <span class="st">"FA Band"</span>, <span class="at">y =</span> <span class="st">"Population"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using the mate’s provided code, the plot generated is differnt from the original one. For better interpretability, the original plot will be provided as image</p>
+</div>
+</div>
+<p><span style="color:#2E86C1; background-color: #FFFF99;"><strong>Original Plot</strong></span></p>
+<p><img src="images/2.png" class="img-fluid"></p>
+<p><strong>The classmate’s plot interpretation</strong>:</p>
+<ul>
+<li>The population in the &gt;100 to 120 FA Band shows a wider spread and higher population values compared to the &lt;=60 FA Band.</li>
+<li>A large spread in the &gt;100 to 120 FA Band indicates greater variability in population within this age range.</li>
+<li>The median line is positioned higher in the box, suggesting a higher central tendency for this age band.</li>
+<li>The presence of outliers in some bands indicates the existence of extreme population values.</li>
+<li>These outliers suggest that certain age groups may have a more diverse or skewed distribution.</li>
+</ul>
+</section>
+<section id="three-good-design-principles" class="level1">
+<h1>4. Three good design principles</h1>
+<div class="callout callout-style-default callout-tip callout-titled" title="Three good design principles">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Three good design principles
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Clear Axis Labels and Titles</strong>: The x-axis (FA Band) and y-axis (Population) are clearly labeled, and the title “Population by Functional Age Range (FA)” clearly explains what the chart is about.</p></li>
+<li><p><strong>Outlier Visibility and Data Granularity</strong>: The inclusion of individual data points (outliers) gives viewers more detailed insight into data distribution beyond quartiles.</p></li>
+<li><p><strong>Logical Ordering of Age Bands</strong>: The FA Bands on the x-axis are ordered logically from youngest (&lt;=60) to oldest (&gt;120), which supports intuitive comparisons.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="three-areas-for-further-improvement" class="level1">
+<h1>5. Three areas for further improvement</h1>
+<div class="callout callout-style-default callout-important callout-titled" title="Three areas for further improvement">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Three areas for further improvement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Mismatch Between Data Type and Visualization Method</strong>: Population count is a form of aggregated count data, not a continuous variable. Since box plots are best suited for showing distributions of continuous data, using them to display aggregated population values per FA Band may mislead viewers.</p></li>
+<li><p><strong>“Not Available” Treated as a Comparable Group</strong>: Including “Not Available” as a FA Band on the same axis as valid ranges gives the false impression that it’s a meaningful category for comparison. This could be misleading.</p></li>
+<li><p><strong>Lack of Summary Statistics Displayed</strong>: While box plots visually encode the median and interquartile range, the exact values cannot be read directly from the chart, making it difficult to interpret in this case. Viewers are left to estimate the central tendency and spread, which may lead to misunderstanding.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="makeover-version" class="level1">
+<h1>6. Makeover version</h1>
+<section id="how-the-makeover-tackles-the-aforementioned-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-makeover-tackles-the-aforementioned-limitations">6.1. <strong>How the makeover tackles the aforementioned limitations</strong>:</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Original Issue</th>
+<th style="text-align: left;">Fix in Makeover</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Mismatch Between Data Type and Visualization Method</td>
+<td style="text-align: left;">Uses <strong>bar chart</strong> for aggregated count data instead of boxplot, which is meant for continuous distribution.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. “Not Available” Treated as Comparable Group</td>
+<td style="text-align: left;">Explicitly <strong>filters out ‘Not Available’</strong> to avoid misleading comparison with valid age bands.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Lack of Summary Statistics Displayed</td>
+<td style="text-align: left;">Displays <strong>exact totals as labels</strong> on bars, making the chart easily interpretable. No need to guess medians or IQRs.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define FA Band order (without "Not Available")</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>FA_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"&lt;= 60"</span>, <span class="st">"&gt;60 to 80"</span>, <span class="st">"&gt;80 to 100"</span>, <span class="st">"&gt;100 to 120"</span>, <span class="st">"&gt;120"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Filter and recode factor</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Resident_Data_Clean <span class="ot">&lt;-</span> Resident_Data <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(FA <span class="sc">%in%</span> FA_order) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">FA =</span> <span class="fu">factor</span>(FA, <span class="at">levels =</span> FA_order))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Aggregate population per FA Band</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> Resident_Data_Clean <span class="sc">%&gt;%</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(FA) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total_Population =</span> <span class="fu">sum</span>(Pop, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Bar chart</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summary_df, <span class="fu">aes</span>(<span class="at">x =</span> FA, <span class="at">y =</span> Total_Population, <span class="at">fill =</span> FA)) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Total_Population), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Population by Functional Age Band (Excluding Not Available)"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"FA Band"</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Population"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex01_Phrase-2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="addition-population-is-distributed-across-planning-areas-pas-within-each-functional-age-fa-band-with-interactivity" class="level2">
+<h2 class="anchored" data-anchor-id="addition-population-is-distributed-across-planning-areas-pas-within-each-functional-age-fa-band-with-interactivity">6.2. <strong>Addition</strong>: Population is distributed across Planning Areas (PAs) within each Functional Age (FA) Band with <code>Interactivity</code></h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">The graph</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">The code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-8131e5de79ac7963a971" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8131e5de79ac7963a971">{"x":{"data":[{"x":[1],"y":[140],"text":"Planning Area: Seletar<br>FA Band: <= 60<br>Population: 140","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.80000000000000004,"size":8.3113703809333686,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"Seletar","legendgroup":"Seletar","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[520,10],"text":["Planning Area: Museum<br>FA Band: <= 60<br>Population: 520","Planning Area: Museum<br>FA Band: >60 to 80<br>Population: 10"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(242,124,85,1)","opacity":0.80000000000000004,"size":[9.0491478098194715,7.559055118110237],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(242,124,85,1)"}},"hoveron":"points","name":"Museum","legendgroup":"Museum","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[510,80],"text":["Planning Area: Western Water Catchment<br>FA Band: <= 60<br>Population: 510","Planning Area: Western Water Catchment<br>FA Band: >60 to 80<br>Population: 80"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(235,131,53,1)","opacity":0.80000000000000004,"size":[9.0344667356136341,8.1111035958266058],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(235,131,53,1)"}},"hoveron":"points","name":"Western Water Catchment","legendgroup":"Western Water Catchment","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[430,150,20],"text":["Planning Area: Sungei Kadut<br>FA Band: <= 60<br>Population: 430","Planning Area: Sungei Kadut<br>FA Band: >60 to 80<br>Population: 150","Planning Area: Sungei Kadut<br>FA Band: >120<br>Population: 20"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(227,137,0,1)","opacity":0.80000000000000004,"size":[8.9112922017955487,8.339769562384145,7.7677098300658489],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(227,137,0,1)"}},"hoveron":"points","name":"Sungei Kadut","legendgroup":"Sungei Kadut","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[710,160],"text":["Planning Area: Orchard<br>FA Band: <= 60<br>Population: 710","Planning Area: Orchard<br>FA Band: >60 to 80<br>Population: 160"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(218,143,0,1)","opacity":0.80000000000000004,"size":[9.3047856865226688,8.3671713426220329],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(218,143,0,1)"}},"hoveron":"points","name":"Orchard","legendgroup":"Orchard","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[1460,290,80],"text":["Planning Area: Changi<br>FA Band: <= 60<br>Population: 1460","Planning Area: Changi<br>FA Band: >60 to 80<br>Population: 290","Planning Area: Changi<br>FA Band: >120<br>Population: 80"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(207,148,0,1)","opacity":0.80000000000000004,"size":[10.071590566434416,8.6631520735429728,8.1111035958266058],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(207,148,0,1)"}},"hoveron":"points","name":"Changi","legendgroup":"Changi","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[1590,480,60],"text":["Planning Area: Mandai<br>FA Band: <= 60<br>Population: 1590","Planning Area: Mandai<br>FA Band: >60 to 80<br>Population: 480","Planning Area: Mandai<br>FA Band: >120<br>Population: 60"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(196,154,0,1)","opacity":0.80000000000000004,"size":[10.181804178497492,8.9895197540240908,8.0256212378686271],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(196,154,0,1)"}},"hoveron":"points","name":"Mandai","legendgroup":"Mandai","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[2110,410,60],"text":["Planning Area: Southern Islands<br>FA Band: <= 60<br>Population: 2110","Planning Area: Southern Islands<br>FA Band: >60 to 80<br>Population: 410","Planning Area: Southern Islands<br>FA Band: >120<br>Population: 60"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(183,159,0,1)","opacity":0.80000000000000004,"size":[10.582749158926664,8.8787033867224441,8.0256212378686271],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(183,159,0,1)"}},"hoveron":"points","name":"Southern Islands","legendgroup":"Southern Islands","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[3600,510,60],"text":["Planning Area: Downtown Core<br>FA Band: <= 60<br>Population: 3600","Planning Area: Downtown Core<br>FA Band: >60 to 80<br>Population: 510","Planning Area: Downtown Core<br>FA Band: >120<br>Population: 60"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(169,164,0,1)","opacity":0.80000000000000004,"size":[11.512497565755009,9.0344667356136341,8.0256212378686271],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(169,164,0,1)"}},"hoveron":"points","name":"Downtown Core","legendgroup":"Downtown Core","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[3480,620,100],"text":["Planning Area: Singapore River<br>FA Band: <= 60<br>Population: 3480","Planning Area: Singapore River<br>FA Band: >60 to 80<br>Population: 620","Planning Area: Singapore River<br>FA Band: >120<br>Population: 100"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(153,168,0,1)","opacity":0.80000000000000004,"size":[11.445861740645521,9.1887005145379597,8.1850192539770763],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(153,168,0,1)"}},"hoveron":"points","name":"Singapore River","legendgroup":"Singapore River","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[6940,900,100],"text":["Planning Area: Tengah<br>FA Band: <= 60<br>Population: 6940","Planning Area: Tengah<br>FA Band: >60 to 80<br>Population: 900","Planning Area: Tengah<br>FA Band: >120<br>Population: 100"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(134,172,0,1)","opacity":0.80000000000000004,"size":[13.051868118126439,9.5274997338141976,8.1850192539770763],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(134,172,0,1)"}},"hoveron":"points","name":"Tengah","legendgroup":"Tengah","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[7640,1900,370],"text":["Planning Area: Newton<br>FA Band: <= 60<br>Population: 7640","Planning Area: Newton<br>FA Band: >60 to 80<br>Population: 1900","Planning Area: Newton<br>FA Band: >120<br>Population: 370"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(112,176,0,1)","opacity":0.80000000000000004,"size":[13.322610433246597,10.427583153047651,8.8109833898439156],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(112,176,0,1)"}},"hoveron":"points","name":"Newton","legendgroup":"Newton","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[9340,2230,400],"text":["Planning Area: River Valley<br>FA Band: <= 60<br>Population: 9340","Planning Area: River Valley<br>FA Band: >60 to 80<br>Population: 2230","Planning Area: River Valley<br>FA Band: >120<br>Population: 400"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(83,180,0,1)","opacity":0.80000000000000004,"size":[13.932423455987324,10.667940307100679,8.8621033766294346],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(83,180,0,1)"}},"hoveron":"points","name":"River Valley","legendgroup":"River Valley","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[8890,3310,840],"text":["Planning Area: Rochor<br>FA Band: <= 60<br>Population: 8890","Planning Area: Rochor<br>FA Band: >60 to 80<br>Population: 3310","Planning Area: Rochor<br>FA Band: >120<br>Population: 840"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(29,183,0,1)","opacity":0.80000000000000004,"size":[13.776825496091121,11.34945619332937,9.4599900123573377],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(29,183,0,1)"}},"hoveron":"points","name":"Rochor","legendgroup":"Rochor","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[10540,4950,1250],"text":["Planning Area: Outram<br>FA Band: <= 60<br>Population: 10540","Planning Area: Outram<br>FA Band: >60 to 80<br>Population: 4950","Planning Area: Outram<br>FA Band: >120<br>Population: 1250"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":0.80000000000000004,"size":[14.32989248351843,12.196637858904438,9.8825356568362892],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"Outram","legendgroup":"Outram","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[18450,4930,1160],"text":["Planning Area: Tanglin<br>FA Band: <= 60<br>Population: 18450","Planning Area: Tanglin<br>FA Band: >60 to 80<br>Population: 4930","Planning Area: Tanglin<br>FA Band: >120<br>Population: 1160"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,188,86,1)","opacity":0.80000000000000004,"size":[16.519068432075802,12.187240518466377,9.7966276229572173],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,188,86,1)"}},"hoveron":"points","name":"Tanglin","legendgroup":"Tanglin","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[32910,10980,3060],"text":["Planning Area: Marine Parade<br>FA Band: <= 60<br>Population: 32910","Planning Area: Marine Parade<br>FA Band: >60 to 80<br>Population: 10980","Planning Area: Marine Parade<br>FA Band: >120<br>Population: 3060"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,190,109,1)","opacity":0.80000000000000004,"size":[19.527180920507657,14.469905813715235,11.203053003742221],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,190,109,1)"}},"hoveron":"points","name":"Marine Parade","legendgroup":"Marine Parade","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[38060,11210,2880],"text":["Planning Area: Novena<br>FA Band: <= 60<br>Population: 38060","Planning Area: Novena<br>FA Band: >60 to 80<br>Population: 11210","Planning Area: Novena<br>FA Band: >120<br>Population: 2880"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,129,1)","opacity":0.80000000000000004,"size":[20.429854683986868,14.541977391759966,11.09389010601382],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,129,1)"}},"hoveron":"points","name":"Novena","legendgroup":"Novena","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[50490,20940,3160],"text":["Planning Area: Jurong East<br>FA Band: <= 60<br>Population: 50490","Planning Area: Jurong East<br>FA Band: >60 to 80<br>Population: 20940","Planning Area: Jurong East<br>FA Band: >120<br>Population: 3160"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,192,148,1)","opacity":0.80000000000000004,"size":[22.383821894347257,17.104865665305212,11.262308887257468],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,192,148,1)"}},"hoveron":"points","name":"Jurong East","legendgroup":"Jurong East","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[61390,18300,4560],"text":["Planning Area: Bukit Timah<br>FA Band: <= 60<br>Population: 61390","Planning Area: Bukit Timah<br>FA Band: >60 to 80<br>Population: 18300","Planning Area: Bukit Timah<br>FA Band: >120<br>Population: 4560"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,193,165,1)","opacity":0.80000000000000004,"size":[23.906189722835805,16.48255144825578,12.009812235015444],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,193,165,1)"}},"hoveron":"points","name":"Bukit Timah","legendgroup":"Bukit Timah","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[61090,22830,4290],"text":["Planning Area: Bishan<br>FA Band: <= 60<br>Population: 61090","Planning Area: Bishan<br>FA Band: >60 to 80<br>Population: 22830","Planning Area: Bishan<br>FA Band: >120<br>Population: 4290"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,192,181,1)","opacity":0.80000000000000004,"size":[23.866191780332016,17.526549893135741,11.875737364408639],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,192,181,1)"}},"hoveron":"points","name":"Bishan","legendgroup":"Bishan","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[68960,26250,5980],"text":["Planning Area: Kallang<br>FA Band: <= 60<br>Population: 68960","Planning Area: Kallang<br>FA Band: >60 to 80<br>Population: 26250","Planning Area: Kallang<br>FA Band: >120<br>Population: 5980"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":0.80000000000000004,"size":[24.884936305591726,18.24739146513069,12.657237434024815],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"Kallang","legendgroup":"Kallang","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[71580,23620,6840],"text":["Planning Area: Queenstown<br>FA Band: <= 60<br>Population: 71580","Planning Area: Queenstown<br>FA Band: >60 to 80<br>Population: 23620","Planning Area: Queenstown<br>FA Band: >120<br>Population: 6840"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,189,210,1)","opacity":0.80000000000000004,"size":[25.211046439032085,17.69761312243422,13.012093423948018],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,189,210,1)"}},"hoveron":"points","name":"Queenstown","legendgroup":"Queenstown","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[73390,24320,5250],"text":["Planning Area: Clementi<br>FA Band: <= 60<br>Population: 73390","Planning Area: Clementi<br>FA Band: >60 to 80<br>Population: 24320","Planning Area: Clementi<br>FA Band: >120<br>Population: 5250"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,223,1)","opacity":0.80000000000000004,"size":[25.432861550164716,17.8468116094222,12.335379786969199],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,223,1)"}},"hoveron":"points","name":"Clementi","legendgroup":"Clementi","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[89530,18080,3060],"text":["Planning Area: Sembawang<br>FA Band: <= 60<br>Population: 89530","Planning Area: Sembawang<br>FA Band: >60 to 80<br>Population: 18080","Planning Area: Sembawang<br>FA Band: >120<br>Population: 3060"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,182,235,1)","opacity":0.80000000000000004,"size":[27.300922646996604,16.428721256136672,11.203053003742221],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,182,235,1)"}},"hoveron":"points","name":"Sembawang","legendgroup":"Sembawang","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[82030,28950,5840],"text":["Planning Area: Geylang<br>FA Band: <= 60<br>Population: 82030","Planning Area: Geylang<br>FA Band: >60 to 80<br>Population: 28950","Planning Area: Geylang<br>FA Band: >120<br>Population: 5840"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,177,245,1)","opacity":0.80000000000000004,"size":[26.455846959905447,18.78382535401191,12.597105126080207],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,177,245,1)"}},"hoveron":"points","name":"Geylang","legendgroup":"Geylang","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[81010,31540,5700],"text":["Planning Area: Serangoon<br>FA Band: <= 60<br>Population: 81010","Planning Area: Serangoon<br>FA Band: >60 to 80<br>Population: 31540","Planning Area: Serangoon<br>FA Band: >120<br>Population: 5700"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,171,253,1)","opacity":0.80000000000000004,"size":[26.337979194115427,19.275346986849918,12.536246378179341],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,171,253,1)"}},"hoveron":"points","name":"Serangoon","legendgroup":"Serangoon","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[102550,31440,4740],"text":["Planning Area: Bukit Panjang<br>FA Band: <= 60<br>Population: 102550","Planning Area: Bukit Panjang<br>FA Band: >60 to 80<br>Population: 31440","Planning Area: Bukit Panjang<br>FA Band: >120<br>Population: 4740"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(6,164,255,1)","opacity":0.80000000000000004,"size":[28.687856138835581,19.256752637933648,12.096995301989415],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(6,164,255,1)"}},"hoveron":"points","name":"Bukit Panjang","legendgroup":"Bukit Panjang","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[97750,33740,8540],"text":["Planning Area: Toa Payoh<br>FA Band: <= 60<br>Population: 97750","Planning Area: Toa Payoh<br>FA Band: >60 to 80<br>Population: 33740","Planning Area: Toa Payoh<br>FA Band: >120<br>Population: 8540"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":0.80000000000000004,"size":[28.187399063739754,19.677206325871971,13.653058799152099],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"Toa Payoh","legendgroup":"Toa Payoh","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[109920,30930,4630],"text":["Planning Area: Pasir Ris<br>FA Band: <= 60<br>Population: 109920","Planning Area: Pasir Ris<br>FA Band: >60 to 80<br>Population: 30930","Planning Area: Pasir Ris<br>FA Band: >120<br>Population: 4630"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(136,147,255,1)","opacity":0.80000000000000004,"size":[29.433991596525157,19.161457931122612,12.043918152298829],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(136,147,255,1)"}},"hoveron":"points","name":"Pasir Ris","legendgroup":"Pasir Ris","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[100940,38940,9510],"text":["Planning Area: Bukit Merah<br>FA Band: <= 60<br>Population: 100940","Planning Area: Bukit Merah<br>FA Band: >60 to 80<br>Population: 38940","Planning Area: Bukit Merah<br>FA Band: >120<br>Population: 9510"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(165,138,255,1)","opacity":0.80000000000000004,"size":[28.521326215803306,20.577838428437001,13.990225258933439],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(165,138,255,1)"}},"hoveron":"points","name":"Bukit Merah","legendgroup":"Bukit Merah","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[106210,44740,9500],"text":["Planning Area: Ang Mo Kio<br>FA Band: <= 60<br>Population: 106210","Planning Area: Ang Mo Kio<br>FA Band: >60 to 80<br>Population: 44740","Planning Area: Ang Mo Kio<br>FA Band: >120<br>Population: 9500"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(189,129,255,1)","opacity":0.80000000000000004,"size":[29.061629319400481,21.513984583986627,13.986839541330623],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(189,129,255,1)"}},"hoveron":"points","name":"Ang Mo Kio","legendgroup":"Ang Mo Kio","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[124710,38040,5640],"text":["Planning Area: Bukit Batok<br>FA Band: <= 60<br>Population: 124710","Planning Area: Bukit Batok<br>FA Band: >60 to 80<br>Population: 38040","Planning Area: Bukit Batok<br>FA Band: >120<br>Population: 5640"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(208,120,255,1)","opacity":0.80000000000000004,"size":[30.85935032227794,20.426471637650106,12.509935050645522],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(208,120,255,1)"}},"hoveron":"points","name":"Bukit Batok","legendgroup":"Bukit Batok","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[146820,38390,5430],"text":["Planning Area: Choa Chu Kang<br>FA Band: <= 60<br>Population: 146820","Planning Area: Choa Chu Kang<br>FA Band: >60 to 80<br>Population: 38390","Planning Area: Choa Chu Kang<br>FA Band: >120<br>Population: 5430"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(223,112,248,1)","opacity":0.80000000000000004,"size":[32.840740122975134,20.485547120818175,12.416723235749986],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(223,112,248,1)"}},"hoveron":"points","name":"Choa Chu Kang","legendgroup":"Choa Chu Kang","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[164740,29390,5750],"text":["Planning Area: Punggol<br>FA Band: <= 60<br>Population: 164740","Planning Area: Punggol<br>FA Band: >60 to 80<br>Population: 29390","Planning Area: Punggol<br>FA Band: >120<br>Population: 5750"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(236,105,239,1)","opacity":0.80000000000000004,"size":[34.339300117978034,18.868833434103895,12.558066698754422],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(236,105,239,1)"}},"hoveron":"points","name":"Punggol","legendgroup":"Punggol","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[161950,57660,9170],"text":["Planning Area: Hougang<br>FA Band: <= 60<br>Population: 161950","Planning Area: Hougang<br>FA Band: >60 to 80<br>Population: 57660","Planning Area: Hougang<br>FA Band: >120<br>Population: 9170"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(245,100,227,1)","opacity":0.80000000000000004,"size":[34.111545738988106,23.401706018596517,13.8740926128756],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(245,100,227,1)"}},"hoveron":"points","name":"Hougang","legendgroup":"Hougang","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[171270,51480,7570],"text":["Planning Area: Yishun<br>FA Band: <= 60<br>Population: 171270","Planning Area: Yishun<br>FA Band: >60 to 80<br>Population: 51480","Planning Area: Yishun<br>FA Band: >120<br>Population: 7570"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(251,97,215,1)","opacity":0.80000000000000004,"size":[34.864934436550797,22.528485703911681,13.296111187985067],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(251,97,215,1)"}},"hoveron":"points","name":"Yishun","legendgroup":"Yishun","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[200190,48450,6870],"text":["Planning Area: Woodlands<br>FA Band: <= 60<br>Population: 200190","Planning Area: Woodlands<br>FA Band: >60 to 80<br>Population: 48450","Planning Area: Woodlands<br>FA Band: >120<br>Population: 6870"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,97,200,1)","opacity":0.80000000000000004,"size":[37.080563186370931,22.081183235238246,13.0240562280276],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,97,200,1)"}},"hoveron":"points","name":"Woodlands","legendgroup":"Woodlands","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[193800,56150,7960],"text":["Planning Area: Jurong West<br>FA Band: <= 60<br>Population: 193800","Planning Area: Jurong West<br>FA Band: >60 to 80<br>Population: 56150","Planning Area: Jurong West<br>FA Band: >120<br>Population: 7960"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,99,185,1)","opacity":0.80000000000000004,"size":[36.605559736869168,23.192849681256622,13.442230035866595],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,99,185,1)"}},"hoveron":"points","name":"Jurong West","legendgroup":"Jurong West","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[210000,47580,7970],"text":["Planning Area: Sengkang<br>FA Band: <= 60<br>Population: 210000","Planning Area: Sengkang<br>FA Band: >60 to 80<br>Population: 47580","Planning Area: Sengkang<br>FA Band: >120<br>Population: 7970"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,102,168,1)","opacity":0.80000000000000004,"size":[37.795275590551185,21.950181009534734,13.445928983052376],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,102,168,1)"}},"hoveron":"points","name":"Sengkang","legendgroup":"Sengkang","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[190400,73540,13720],"text":["Planning Area: Bedok<br>FA Band: <= 60<br>Population: 190400","Planning Area: Bedok<br>FA Band: >60 to 80<br>Population: 73540","Planning Area: Bedok<br>FA Band: >120<br>Population: 13720"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,107,150,1)","opacity":0.80000000000000004,"size":[36.349625143178315,25.451120627795564,15.284916718862268],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,107,150,1)"}},"hoveron":"points","name":"Bedok","legendgroup":"Bedok","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3],"y":[208150,67210,9590],"text":["Planning Area: Tampines<br>FA Band: <= 60<br>Population: 208150","Planning Area: Tampines<br>FA Band: >60 to 80<br>Population: 67210","Planning Area: Tampines<br>FA Band: >120<br>Population: 9590"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(252,112,130,1)","opacity":0.80000000000000004,"size":[37.661791248338005,24.663651602067436,14.01724710122642],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(252,112,130,1)"}},"hoveron":"points","name":"Tampines","legendgroup":"Tampines","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":56.800610368868405,"l":60.639269406392714},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Dot Plot: Population by FA Band and Planning Area","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["<= 60",">60 to 80",">120"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["<= 60",">60 to 80",">120"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"FA Band","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-10489.5,220499.5],"tickmode":"array","ticktext":["0","50000","100000","150000","200000"],"tickvals":[0,50000.000000000007,100000,150000,200000],"categoryorder":"array","categoryarray":["0","50000","100000","150000","200000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Total Population","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Population<br />Planning Area","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative","height":800},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"b9cb375092b5":{"x":{},"y":{},"size":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"b9cb375092b5","visdat":{"b9cb375092b5":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>FA_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"&lt;= 60"</span>, <span class="st">"&gt;60 to 80"</span>, <span class="st">"&gt;80 to 100"</span>, <span class="st">"&gt;100 to 120"</span>, <span class="st">"&gt;120"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Clean and recode</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Resident_Data_Clean <span class="ot">&lt;-</span> Resident_Data <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(FA <span class="sc">%in%</span> FA_order) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">FA =</span> <span class="fu">factor</span>(FA, <span class="at">levels =</span> FA_order))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Aggregate population by FA and PA</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> Resident_Data_Clean <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(FA, PA) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total_Population =</span> <span class="fu">sum</span>(Pop, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Total_Population <span class="sc">&gt;</span> <span class="dv">0</span>)  <span class="co"># ✅ Remove zero-population entries</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Reorder PA (optional if not used as axis)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>PA_order <span class="ot">&lt;-</span> summary_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA) <span class="sc">%&gt;%</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total_PA =</span> <span class="fu">sum</span>(Total_Population)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Total_PA) <span class="sc">%&gt;%</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(PA)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> summary_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PA =</span> <span class="fu">factor</span>(PA, <span class="at">levels =</span> PA_order))</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Dot plot - y axis is population</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(summary_df, <span class="fu">aes</span>(<span class="at">x =</span> FA, <span class="at">y =</span> Total_Population, <span class="at">size =</span> Total_Population, <span class="at">color =</span> PA,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                            <span class="at">text =</span> <span class="fu">paste0</span>(</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Planning Area: "</span>, PA, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"FA Band: "</span>, FA, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Population: "</span>, Total_Population</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                            ))) <span class="sc">+</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Dot Plot: Population by FA Band and Planning Area"</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"FA Band"</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Population"</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"Population"</span>,</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Planning Area"</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Make interactive</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p, <span class="at">tooltip =</span> <span class="st">"text"</span>) <span class="sc">%&gt;%</span> <span class="fu">layout</span>(<span class="at">height =</span> <span class="dv">800</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
