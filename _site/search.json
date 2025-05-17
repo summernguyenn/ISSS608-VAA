@@ -1839,5 +1839,353 @@
       "Take-home Exercise",
       "Take-home Exercise 1 - Phase 2"
     ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "",
+    "text": "This exercise provides hands-on experience on the below data visualization:\n\nplot a calendar heatmap using ggplot2 functions,\nplot a cycle plot using ggplot2 function,\nplot a slopegraph\nplot a horizon chart",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#install-r-packages",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#install-r-packages",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "2.1. Install R packages",
+    "text": "2.1. Install R packages\nThe below code chunks load and install the necessary packages into R environment.\n\npacman::p_load(scales, viridis, lubridate, ggthemes, gridExtra, readxl, knitr, data.table, CGPfunctions, ggHoriPlot, tidyverse)",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#the-data",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#the-data",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "3.1.The Data",
+    "text": "3.1.The Data\neventlog.csv file will be used for this hands-on exercise. This dataset consists of 199,999 rows of time-series cyber attack records by country.",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#importing-the-data",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#importing-the-data",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "3.2. Importing the data",
+    "text": "3.2. Importing the data\nThe below code chunk imports eventlog.csv into R environment as a tibble dataframe named attack\n\nattacks &lt;- read_csv(\"data/eventlog.csv\")",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#examining-the-data-structure",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#examining-the-data-structure",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "3.3. Examining the data structure",
+    "text": "3.3. Examining the data structure\nThe below code chunk useskable() to review the structure of the imported data frame.\n\nkable(head(attacks))\n\n\n\n\ntimestamp\nsource_country\ntz\n\n\n\n\n2015-03-12 15:59:16\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:00:48\nFR\nEurope/Paris\n\n\n2015-03-12 16:02:26\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:02:38\nUS\nAmerica/Chicago\n\n\n2015-03-12 16:03:22\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:03:45\nCN\nAsia/Shanghai\n\n\n\n\n\nThe output shows there are three columns: timestamp, source_country and tz.\n\ntimestamp: stores date-time values in POSIXct format.\nsource_country: stores the source of the attack in ISO 3166-1 alpha-2 country code.\ntz: stores time zone of the source IP address.",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#data-preparation",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#data-preparation",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "3.4. Data Preparation",
+    "text": "3.4. Data Preparation\nStep1: Before we can plot the calendar heatmap, the weekday and hour of the day need to be defined. The below code chunk creates these new fields named wkday and hour.\n\nmake_hr_wkday &lt;- function(ts, sc, tz) {\n  real_times &lt;- ymd_hms(ts, \n                        tz = tz[1], \n                        quiet = TRUE)\n  dt &lt;- data.table(source_country = sc,\n                   wkday = weekdays(real_times),\n                   hour = hour(real_times))\n  return(dt)\n  }\n\n\n\n\n\n\n\nNote\n\n\n\n\nymd_hms() and hour() are from lubridate package, and\nweekdays() is a base R function.\n\n\n\nStep 2: We derive the attacks tibble dataframe, using mutate() to convert wkday and hour fields into factor so they’ll be ordered when plotting.\n\nwkday_levels &lt;- c('Saturday', 'Friday', \n                  'Thursday', 'Wednesday', \n                  'Tuesday', 'Monday', \n                  'Sunday')\n\nattacks &lt;- attacks %&gt;%\n  group_by(tz) %&gt;%\n  do(make_hr_wkday(.$timestamp, \n                   .$source_country, \n                   .$tz)) %&gt;% \n  ungroup() %&gt;% \n  mutate(wkday = factor(\n    wkday, levels = wkday_levels),\n    hour  = factor(\n      hour, levels = 0:23))\n\n\n\n\n\n\n\nNote\n\n\n\nBeside extracting the necessary data into attacks data frame, mutate() of dplyr package is used to convert wkday and hour fields into factor so they’ll be ordered when plotting\n\n\nThe below code output shows the tidy tibble table after processing.\n\nkable(head(attacks))\n\n\n\n\ntz\nsource_country\nwkday\nhour\n\n\n\n\nAfrica/Cairo\nBG\nSaturday\n20\n\n\nAfrica/Cairo\nTW\nSunday\n6\n\n\nAfrica/Cairo\nTW\nSunday\n8\n\n\nAfrica/Cairo\nCN\nSunday\n11\n\n\nAfrica/Cairo\nUS\nSunday\n15\n\n\nAfrica/Cairo\nCA\nMonday\n11",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#building-the-calendar-heatmaps",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#building-the-calendar-heatmaps",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "3.5. Building the Calendar Heatmaps",
+    "text": "3.5. Building the Calendar Heatmaps\n\ngrouped &lt;- attacks %&gt;% \n  count(wkday, hour) %&gt;% \n  ungroup() %&gt;%\n  na.omit()\n\nggplot(grouped, \n       aes(hour, \n           wkday, \n           fill = n)) + \ngeom_tile(color = \"white\", \n          size = 0.1) + \ntheme_tufte(base_family = \"Helvetica\") + \ncoord_equal() +\nscale_fill_gradient(name = \"# of attacks\",\n                    low = \"sky blue\", \n                    high = \"dark blue\") +\nlabs(x = NULL, \n     y = NULL, \n     title = \"Attacks by weekday and time of day\") +\ntheme(axis.ticks = element_blank(),\n      plot.title = element_text(hjust = 0.5),\n      legend.title = element_text(size = 8),\n      legend.text = element_text(size = 6) )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey takeaways from the above code chunk:\n\n\n\n\nData Aggregation: A tibble called grouped is created by aggregating attack occurrences by wkday and hour.\nCount Calculation: A new field n is generated using group_by() and count().\nHandling Missing Values: na.omit() removes missing data.\nTile Plotting: geom_tile() plots grids at each (x, y) position, with color and size defining tile borders.\nMinimalist Theme: theme_tufte() (from ggthemes) removes unnecessary elements; try commenting it out to see the default plot.\nAspect Ratio: coord_equal() ensures a 1:1 aspect ratio.\nColor Scaling: scale_fill_gradient() creates a two-color gradient for visual contrast.",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#building-multiple-calendar-heatmaps",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#building-multiple-calendar-heatmaps",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "3.6. Building Multiple Calendar Heatmaps",
+    "text": "3.6. Building Multiple Calendar Heatmaps\nIn this section, we explore how to plots multiple heatmaps for the top four countries with the highest number of attacks.\nStep 1: Derive attack by country\nIn order to identify the top 4 countries with the highest number of attacks, we need to count the number of attacks by country and calculate the percent of attacks by country. Finally, save the ordered results in a tibble data frame.\n\nattacks_by_country &lt;- count(\n  attacks, source_country) %&gt;%\n  mutate(percent = percent(n/sum(n))) %&gt;%\n  arrange(desc(n))\n\nStep 2: Prepare the tidy data frame\nNext we extract the attack records of the top 4 countries from and save the data in a new tibble data frame call top4_attacks.\n\ntop4 &lt;- attacks_by_country$source_country[1:4]\ntop4_attacks &lt;- attacks %&gt;%\n  filter(source_country %in% top4) %&gt;%\n  count(source_country, wkday, hour) %&gt;%\n  ungroup() %&gt;%\n  mutate(source_country = factor(\n    source_country, levels = top4)) %&gt;%\n  na.omit()",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#plot-multiple-calendar-heatmaps",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#plot-multiple-calendar-heatmaps",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "3.7. Plot Multiple Calendar Heatmaps",
+    "text": "3.7. Plot Multiple Calendar Heatmaps\nStep 3: Finally, we plot the Multiple Calender Heatmap using ggplot2 functions.\n\nggplot(top4_attacks, \n       aes(hour, \n           wkday, \n           fill = n)) + \n  geom_tile(color = \"white\", \n          size = 0.1) + \n  theme_tufte(base_family = \"Helvetica\") + \n  coord_equal() +\n  scale_fill_gradient(name = \"# of attacks\",\n                    low = \"sky blue\", \n                    high = \"dark blue\") +\n  facet_wrap(~source_country, ncol = 2) +\n  labs(x = NULL, y = NULL, \n     title = \"Attacks on top 4 countries by weekday and time of day\") +\n  theme(axis.ticks = element_blank(),\n        axis.text.x = element_text(size = 5.5),\n        plot.title = element_text(hjust = 0.5),\n        legend.title = element_text(size = 8),\n        legend.text = element_text(size = 6) )",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-1-data-import",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-1-data-import",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "4.1. Step 1: Data Import",
+    "text": "4.1. Step 1: Data Import\nThe code chunk below uses read_excel() to imports arrivals_by_air.xlsx into a tibble data frame called air.\n\nair &lt;- read_excel(\"data/arrivals_by_air.xlsx\")",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-2-deriving-month-and-year-fields",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-2-deriving-month-and-year-fields",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "4.2. Step 2: Deriving month and year fields",
+    "text": "4.2. Step 2: Deriving month and year fields\nNext, two new fields called month and year are derived from Month-Year field.\n\nair$month &lt;- factor(month(air$`Month-Year`), \n                    levels=1:12, \n                    labels=month.abb, \n                    ordered=TRUE) \nair$year &lt;- year(ymd(air$`Month-Year`))",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-3-extracting-the-target-country",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-3-extracting-the-target-country",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "4.3. Step 3: Extracting the target country",
+    "text": "4.3. Step 3: Extracting the target country\nThe below code chunk extracts data for the targeted country\n\nVietnam &lt;- air %&gt;% \n  select(`Vietnam`, \n         month, \n         year) %&gt;%\n  filter(year &gt;= 2010)",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-4-computing-year-average-arrivals-by-month",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-4-computing-year-average-arrivals-by-month",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "4.4. Step 4: Computing year average arrivals by month",
+    "text": "4.4. Step 4: Computing year average arrivals by month\nThe code chunk below uses group_by() and summarise() of dplyr to compute average arrivals by month.\n\nhline.data &lt;- Vietnam %&gt;% \n  group_by(month) %&gt;%\n  summarise(avgvalue = mean(`Vietnam`))",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-5-plotting-the-cycle-plot",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-5-plotting-the-cycle-plot",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "4.5. Step 5: Plotting the cycle plot",
+    "text": "4.5. Step 5: Plotting the cycle plot\nThe below code chunk plots the cycle plot.\n\nggplot() + \n  geom_line(data = Vietnam,\n            aes(x = year, \n                y = `Vietnam`, \n                group = 1),  \n            colour = \"black\") +\n  geom_hline(data = hline.data, \n             aes(yintercept = avgvalue), \n             linetype = \"dashed\", \n             colour = \"red\", \n             size = 0.5) +\n  facet_wrap(~ month, ncol = 6) + \n  labs(title = \"Visitor arrivals from Vietnam by air, Jan 2010-Dec 2019\",\n       x = \"\",\n       y = \"No. of Visitors\") +\n  theme_tufte(base_family = \"Helvetica\") +\n  theme(\n    axis.text.x = element_blank(),\n    panel.border = element_rect(colour = \"grey80\", fill = NA, size = 0.5),  \n    panel.grid.major = element_line(colour = \"grey90\", size = 0.2),       \n    strip.background = element_rect(fill = \"grey90\", color = NA)            \n  )",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-1-data-import-1",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-1-data-import-1",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "5.1. Step 1: Data Import",
+    "text": "5.1. Step 1: Data Import\nThe below code chunk import rice.csv into R environment\n\nrice &lt;- read_csv(\"data/rice.csv\")",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-2-plotting-the-slopegraph",
+    "href": "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html#step-2-plotting-the-slopegraph",
+    "title": "Hands-on Exercise 6 - Visualising and Analysing Time-oriented Data",
+    "section": "5.2. Step 2: Plotting the slopegraph",
+    "text": "5.2. Step 2: Plotting the slopegraph\nThe below code chunk below plots a basic slopegraph.\n\nrice %&gt;% \n  mutate(Year = factor(Year)) %&gt;%\n  filter(Year %in% c(1961, 1980)) %&gt;%\n  newggslopegraph(Year, Yield, Country,\n                Title = \"Rice Yield of Top 11 Asian Counties\",\n                SubTitle = \"1961-1980\",\n                Caption = \"Prepared by: Phuong Nguyen\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThing to learn from the code chunk above\n\n\n\nFor effective visualization sorting, factor() is used to convert the value in Year from numeric to factor.",
+    "crumbs": [
+      "Home",
+      "Hands-on Exercise",
+      "6 - Visualising and Analysing Time-oriented Data"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html",
+    "href": "In-class_Ex/In-class_Ex05.html",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "In the code chunk below, p_load() of pacman package is used to load the R packages into R environment\n\npacman::p_load(tidyverse, jsonlite,\n               SmartEDA, tidygraph,\n               ggraph)\n\n\n\n\nIn the code chunk, fromJSON() of jsonlite package is used to import MC1_graph.json file into R and save the output subject\n\nkg &lt;- fromJSON(\"data/MC1_graph.json\")\n\n\n\n\n\nstr(kg, max.level = 1)\n\nList of 5\n $ directed  : logi TRUE\n $ multigraph: logi TRUE\n $ graph     :List of 2\n $ nodes     :'data.frame': 17412 obs. of  10 variables:\n $ links     :'data.frame': 37857 obs. of  4 variables:\n\n\n\n\n\n\nnodes_tbl &lt;- as_tibble(kg$nodes)\nedges_tbl &lt;- as_tibble(kg$links)",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#loading-packages",
+    "href": "In-class_Ex/In-class_Ex05.html#loading-packages",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "In the code chunk below, p_load() of pacman package is used to load the R packages into R environment\n\npacman::p_load(tidyverse, jsonlite,\n               SmartEDA, tidygraph,\n               ggraph)",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#importing-json",
+    "href": "In-class_Ex/In-class_Ex05.html#importing-json",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "In the code chunk, fromJSON() of jsonlite package is used to import MC1_graph.json file into R and save the output subject\n\nkg &lt;- fromJSON(\"data/MC1_graph.json\")",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#inspecting-structure",
+    "href": "In-class_Ex/In-class_Ex05.html#inspecting-structure",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "str(kg, max.level = 1)\n\nList of 5\n $ directed  : logi TRUE\n $ multigraph: logi TRUE\n $ graph     :List of 2\n $ nodes     :'data.frame': 17412 obs. of  10 variables:\n $ links     :'data.frame': 37857 obs. of  4 variables:",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#extracting-and-inspecting",
+    "href": "In-class_Ex/In-class_Ex05.html#extracting-and-inspecting",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "nodes_tbl &lt;- as_tibble(kg$nodes)\nedges_tbl &lt;- as_tibble(kg$links)",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#edge-type",
+    "href": "In-class_Ex/In-class_Ex05.html#edge-type",
+    "title": "In-class Exercise 5",
+    "section": "2.1. Edge Type",
+    "text": "2.1. Edge Type\n\nggplot(data = edges_tbl, \n       aes(y = `Edge Type`, fill = `Edge Type`)) +\n  geom_bar()",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#node-type",
+    "href": "In-class_Ex/In-class_Ex05.html#node-type",
+    "title": "In-class Exercise 5",
+    "section": "2.2. Node Type",
+    "text": "2.2. Node Type\n\nggplot(data = nodes_tbl, \n       aes(y = `Node Type`, fill = `Node Type`)) +\n  geom_bar()",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-1-mapping-from-node-id-to-row-index",
+    "href": "In-class_Ex/In-class_Ex05.html#step-1-mapping-from-node-id-to-row-index",
+    "title": "In-class Exercise 5",
+    "section": "3.1. Step 1: Mapping from node ID to row Index",
+    "text": "3.1. Step 1: Mapping from node ID to row Index\n\nid_map &lt;- tibble(id=nodes_tbl$id,\n                 index = seq_len(nrow(nodes_tbl)))\n\nThis ensures each id from your node list is mapped to the correct row number.",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-2-map-source-and-target-ids-to-row-indices",
+    "href": "In-class_Ex/In-class_Ex05.html#step-2-map-source-and-target-ids-to-row-indices",
+    "title": "In-class Exercise 5",
+    "section": "3.2. Step 2: Map source and target IDs to row indices",
+    "text": "3.2. Step 2: Map source and target IDs to row indices\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n\n  rename(from = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n\n  rename(to = index)",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-3-filter-out-any-unmatched-invalid-edges",
+    "href": "In-class_Ex/In-class_Ex05.html#step-3-filter-out-any-unmatched-invalid-edges",
+    "title": "In-class Exercise 5",
+    "section": "3.3. Step 3: Filter out any unmatched (invalid) edges",
+    "text": "3.3. Step 3: Filter out any unmatched (invalid) edges\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  filter(!is.na(from), !is.na(to))",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-4-creating-the-graph",
+    "href": "In-class_Ex/In-class_Ex05.html#step-4-creating-the-graph",
+    "title": "In-class Exercise 5",
+    "section": "3.4. Step 4: Creating the graph",
+    "text": "3.4. Step 4: Creating the graph\nLastly, tbl_graph is used to create tidygraph’s graph object by using the code junk below.\n\ngraph &lt;- tbl_graph(nodes = nodes_tbl, \n                   edges = edges_tbl,\n                   directed = kg$directed)",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#visualizing-the-whole-graph",
+    "href": "In-class_Ex/In-class_Ex05.html#visualizing-the-whole-graph",
+    "title": "In-class Exercise 5",
+    "section": "4.1. Visualizing the whole graph",
+    "text": "4.1. Visualizing the whole graph\n\nggraph(graph, layout =\"fr\") + \n  geom_edge_link(aplpha = 0.3, colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), size = 4) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  theme_void()",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#visualizing-the-sub-graph",
+    "href": "In-class_Ex/In-class_Ex05.html#visualizing-the-sub-graph",
+    "title": "In-class Exercise 5",
+    "section": "4.2. Visualizing the sub-graph",
+    "text": "4.2. Visualizing the sub-graph\nIn this section, we are interested to create a sub-graph based on MemberOf value in Edge_Type column of the edges column of the edge data frame.\n\n4.2.1. Step 1: Filter edges to only `MemberOf’\n\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;% \n  filter(`Edge Type` == \"MemberOf\")\n\n\n\n4.2.2. Step 2: Extract only connected nodes (i.e., used in these edges)\n\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique()\n\n\n\n4.2.3. Step 3: Keep only those nodes\n\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id)\n\n\n\n4.2.4. Step 4: Plot the sub-graph\n\nggraph(graph_memberof, layout = \"fr\") + \n  geom_edge_link(aplpha = 0.5, colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), size = 1) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  theme_void()",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
   }
 ]

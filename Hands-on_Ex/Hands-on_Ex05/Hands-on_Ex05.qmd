@@ -594,7 +594,7 @@ visNetwork(GAStech_nodes,
   visLayout(randomSeed = 123)
 ```
 
-## 8.6. Interactivity
+## 8.6.Interactivity
 
 In the code chunk below, `visOptions()` is used to enhance interactivity in the network visualization:
 

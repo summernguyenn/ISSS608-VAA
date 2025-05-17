@@ -25,12 +25,18 @@ website:
           href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex044.html"
         - text: "Hands-on Exerise 5 - Modelling, Visualising and Analysing Network Data with R"
           href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html"
+        - text: "Hands-on Exerise 6 - Visualising and Analysing Time-oriented Data"
+          href: "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html"
     - text: "Take-home Exercise"
       menu: 
         - text: "Take-home Exercise 1 - Phase 1"
           href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"
         - text: "Take-home Exercise 1 - Phase 2"
           href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01_Phrase 2.html"
+    - text: "In-class Exercise"
+      menu: 
+        - text: "In-class Exercise 5"
+          href: "In-class_Ex/In-class_Ex05.html"
     right:   
       - href: index.qmd
         text: Home
@@ -63,12 +69,18 @@ website:
             href: "Hands-on_Ex/Hands-on_L_Ex04/Hands-on_Ex044.html"
           - text: "5 - Modelling, Visualising and Analysing Network Data with R"
             href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html"
+          - text: "6 - Visualising and Analysing Time-oriented Data"
+            href: "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html"
       - section: "Take-home Exercise"
         contents:
           - text: "Take-home Exercise 1 - Phase 1"
             href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"
           - text: "Take-home Exercise 1 - Phase 2"
             href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01_Phrase 2.html"
+      - section: "In-class Exercise"
+        contents:
+          - text: "In-class Exercise 5"
+            href: "In-class_Ex/In-class_Ex05.html"
 
 format:
   html:
