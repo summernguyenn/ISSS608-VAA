@@ -89,7 +89,7 @@
               "destination": "string"
             }
           },
-          "Enforcement": {
+          "C": {
             "description": "Actions taken to enforce regulations or restrictions",
             "count": 21,
             "specific_attributes": {
