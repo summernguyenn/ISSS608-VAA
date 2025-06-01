@@ -195,7 +195,6 @@ A dual analysis of **Nadia Conti’s** messaging activity and the messages refer
 -   **Mentions of Nadia** by others cluster similarly, with spikes on **2040-10-07** and **2040-10-12**, pointing to her being a topic of **strategic discussion** during morning briefings.
 
 This alignment suggests Nadia may play a **central operational role**, either **directing plans** or being a **subject of surveillance or planning**.
-
 </div>
 
 # 8. Nadia's Relationship Network Graph
@@ -877,5 +876,4 @@ These alignments strongly suggest that **Nadia Conti played a calculated orchest
     -   Nadia **controlled logistics, timelines, and access**
     -   **Delegated riskier operations** (e.g., payment, surveillance diversion) to others
     -   **Obfuscated true operations** under legal cover (permits)
-
 </div>
