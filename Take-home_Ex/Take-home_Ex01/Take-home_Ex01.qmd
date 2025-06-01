@@ -240,8 +240,8 @@ ggplot() +
 ```
 :::
 
-- **Overall age structure**: The grey background bars illustrate the total population across age groups, revealing a skew towards younger cohorts — with over 85% of the population below age 65.
-- **Females dominance in older age**: When comparing gender-specific age structures, it is evident that females have a greater representation in the older age brackets, highlighting higher life expectancy among women.
+-   **Overall age structure**: The grey background bars illustrate the total population across age groups, revealing a skew towards younger cohorts — with over 85% of the population below age 65.
+-   **Females dominance in older age**: When comparing gender-specific age structures, it is evident that females have a greater representation in the older age brackets, highlighting higher life expectancy among women.
 
 ## 5.3. Insight 1.2. Singapore’s Population by Age Cohorts: A Comparative View
 
@@ -351,11 +351,10 @@ ggplot(pyramid_data, aes(x = AgeGroup, y = Pop, fill = Sex)) +
 ```
 :::
 
-- **Working-age concentration**: The largest population segments fall within the 25–54 age range, indicating a strong labor force presence.
-- **Lower birth rate signal**: The narrow base (ages 0–14) points to a decline in birth rates, which may pose challenges for future demographic sustainability.
-- **Balanced young-to-middle age cohorts**: From ages 0 to 60, the pyramid shows almost equal numbers of males and females, suggesting balanced gender distribution in most age groups.
-- **Gender disparity at the top**: Starting from age 75 and above, there is a visible tilt toward females, again emphasizing greater longevity among women.
-
+-   **Working-age concentration**: The largest population segments fall within the 25–54 age range, indicating a strong labor force presence.
+-   **Lower birth rate signal**: The narrow base (ages 0–14) points to a decline in birth rates, which may pose challenges for future demographic sustainability.
+-   **Balanced young-to-middle age cohorts**: From ages 0 to 60, the pyramid shows almost equal numbers of males and females, suggesting balanced gender distribution in most age groups.
+-   **Gender disparity at the top**: Starting from age 75 and above, there is a visible tilt toward females, again emphasizing greater longevity among women.
 
 # 6. Insight 2: Population Structure by Planning Area and Age Group
 
@@ -511,8 +510,7 @@ girafe(
 ## 6.3. Insight 2.3. Age Structure Composition by Planning Area: Young vs Working vs Old
 
 ::: panel-tabset
-
-### Central 
+### Central
 
 ```{r, echo=FALSE,fig.width=10, fig.height=6.5}
 ternary_data <- pop_data %>%
@@ -550,9 +548,9 @@ ggtern(data = ternary_data,
   )
 ```
 
-- **Diverse distribution**: Planning areas in the Central region show a relatively balanced age composition, with most areas clustering near the center of the ternary plot.
-- **High working-age concentration**: Majority of dots tilt toward the WorkingAge corner, suggesting Central areas are hubs for working professionals.
-- **Moderate ageing**: A few areas like Tanglin, Toa Payoh, and Outram lean slightly toward the Old vertex, indicating a notable proportion of elderly residents.
+-   **Diverse distribution**: Planning areas in the Central region show a relatively balanced age composition, with most areas clustering near the center of the ternary plot.
+-   **High working-age concentration**: Majority of dots tilt toward the WorkingAge corner, suggesting Central areas are hubs for working professionals.
+-   **Moderate ageing**: A few areas like Tanglin, Toa Payoh, and Outram lean slightly toward the Old vertex, indicating a notable proportion of elderly residents.
 
 ### West
 
@@ -591,9 +589,9 @@ ggtern(data = ternary_data,
   )
 ```
 
-- **Young and working-heavy areas**: Most planning areas in the West cluster around high WorkingAge and Young proportions.
-- **Low ageing population**: The Old_pct values remain consistently low, pointing to younger families or newer housing developments.
-- **Urban expansion**: Areas like Tengah and Jurong West are reflective of growing, youthful populations driven by infrastructure and development projects.
+-   **Young and working-heavy areas**: Most planning areas in the West cluster around high WorkingAge and Young proportions.
+-   **Low ageing population**: The Old_pct values remain consistently low, pointing to younger families or newer housing developments.
+-   **Urban expansion**: Areas like Tengah and Jurong West are reflective of growing, youthful populations driven by infrastructure and development projects.
 
 ### East
 
@@ -632,8 +630,8 @@ ggtern(data = ternary_data,
   )
 ```
 
-- **Even spread**: Eastern areas like Tampines and Pasir Ris show more spread between Young and Old, though still strongly working-age dominant.
--  **Retirement-ready areas **: Slight drift toward the Old vertex for Bedok and Paya Lebar could reflect ageing-in-place among long-term residents.
+-   **Even spread**: Eastern areas like Tampines and Pasir Ris show more spread between Young and Old, though still strongly working-age dominant.
+-   **Retirement-ready areas** : Slight drift toward the Old vertex for Bedok and Paya Lebar could reflect ageing-in-place among long-term residents.
 
 ### North
 
@@ -672,8 +670,8 @@ ggtern(data = ternary_data,
   )
 ```
 
-- **Compact cluster**: Northern areas group tightly near the WorkingAge vertex with low Young and Old percentages, suggesting a middle-aged population base.
-- **Low youth share**: Unlike the West or North-East, Young_pct is relatively lower, possibly due to migration or fewer new housing estates.
+-   **Compact cluster**: Northern areas group tightly near the WorkingAge vertex with low Young and Old percentages, suggesting a middle-aged population base.
+-   **Low youth share**: Unlike the West or North-East, Young_pct is relatively lower, possibly due to migration or fewer new housing estates.
 
 ### North-East
 
@@ -712,8 +710,8 @@ ggtern(data = ternary_data,
   )
 ```
 
-- **Youth-oriented mix**: Strong presence of Young and WorkingAge populations, especially in areas like Punggol and Sengkang — both known for family-friendly housing.
-- **Minimal ageing**: Most North-East areas have the lowest Old_pct, indicating these are emerging or recently developed neighborhoods with few elderly residents.
+-   **Youth-oriented mix**: Strong presence of Young and WorkingAge populations, especially in areas like Punggol and Sengkang — both known for family-friendly housing.
+-   **Minimal ageing**: Most North-East areas have the lowest Old_pct, indicating these are emerging or recently developed neighborhoods with few elderly residents.
 
 ### The code
 
@@ -753,7 +751,6 @@ ggtern(data = ternary_data,
 ```
 
 Replace `Region == ' '` by Central, East, West, North-East, North, respectively
-
 :::
 
 ## 6.4. Insight 2.4. Age Distribution in the Top 9 Most and Least Populated Areas
@@ -832,9 +829,9 @@ ggplot(agecat_pct, aes(x = "", y = Pct, fill = AgeCategory)) +
 ```
 :::
 
-- **Dominance of Working-Age population**: Across all top 9 planning areas, the Working-Age group forms the largest share, reflecting a strong labor force presence in densely populated zones.
-- **Family-oriented demographics**: Areas such as Punggol and Choa Chu Kang show a notably higher proportion of children, suggesting these are popular among young families and potentially newer residential developments.
-- **Urban growth zones**: The mix of Children and Young-Old groups in places like Tampines and Jurong West further highlights the appeal to both first-time homeowners and multi-generational households.
+-   **Dominance of Working-Age population**: Across all top 9 planning areas, the Working-Age group forms the largest share, reflecting a strong labor force presence in densely populated zones.
+-   **Family-oriented demographics**: Areas such as Punggol and Choa Chu Kang show a notably higher proportion of children, suggesting these are popular among young families and potentially newer residential developments.
+-   **Urban growth zones**: The mix of Children and Young-Old groups in places like Tampines and Jurong West further highlights the appeal to both first-time homeowners and multi-generational households.
 
 **b. Top 9 lowest population (Pop \> 0)**
 
@@ -908,12 +905,10 @@ ggplot(agecat_pct_least, aes(x = "", y = Pct, fill = AgeCategory)) +
 ```
 :::
 
-
-- **Overwhelming Working-age dominance**: These areas are overwhelmingly populated by Working-Age adults, with very limited presence of children or elderly.
-- **Skewed population structure**: Locations such as Seletar and Museum show populations composed of almost 100% working-age, indicating a non-residential or transient-use zone (e.g., commercial, industrial, or institutional).
-- **Lack of dependents**: The near absence of Children or Older Adults suggests these areas have low long-term residential appeal, possibly due to zoning policies or infrastructure designed for other functions.
-- **Purpose-built zones**: The demographic concentration implies planned usage rather than organic residential growth—these may serve niche roles in Singapore's urban planning.
-
+-   **Overwhelming Working-age dominance**: These areas are overwhelmingly populated by Working-Age adults, with very limited presence of children or elderly.
+-   **Skewed population structure**: Locations such as Seletar and Museum show populations composed of almost 100% working-age, indicating a non-residential or transient-use zone (e.g., commercial, industrial, or institutional).
+-   **Lack of dependents**: The near absence of Children or Older Adults suggests these areas have low long-term residential appeal, possibly due to zoning policies or infrastructure designed for other functions.
+-   **Purpose-built zones**: The demographic concentration implies planned usage rather than organic residential growth—these may serve niche roles in Singapore's urban planning.
 
 # 7. Addition - Insight 3. Geographical Distribution Dashboard with `Interactivity` and `Hover Effect`
 
@@ -1153,17 +1148,12 @@ Replace `"PLN_AREA_N"` and `"PA"` by `"SUBZONE_N"` and `"SZ"` to generate graph 
 
 **Population Distribution and Age Structure in Singapore (2024)**:
 
-- National age pyramids indicate a strong working-age base, a narrowing youth cohort, and greater female representation in older age groups, reflecting demographic trends and future challenges in sustainability.
-- Most of the population is concentrated in a few key planning areas like Tampines, Bedok, and Jurong West, while places like Western Islands and Tuas remain sparsely populated. 
-- The Central region shows a balanced age structure with high working-age concentration, whereas some low-population areas are almost exclusively working-age adults, suggesting non-residential functions.
+-   National age pyramids indicate a strong working-age base, a narrowing youth cohort, and greater female representation in older age groups, reflecting demographic trends and future challenges in sustainability.
+-   Most of the population is concentrated in a few key planning areas like Tampines, Bedok, and Jurong West, while places like Western Islands and Tuas remain sparsely populated.
+-   The Central region shows a balanced age structure with high working-age concentration, whereas some low-population areas are almost exclusively working-age adults, suggesting non-residential functions.
 
 # 9. Reference
 
-- Kam, T. S. (2025). R for visual analytics. Retrieved from [https://r4va.netlify.app/](https://r4va.netlify.app/)
-- [Urban Redevelopment Authority (URA)](https://www.ura.gov.sg)
-- [Spatial Data with ggplot2](https://jsimkins2.github.io/geog473-673/spatial-data-with-ggplot2.html)
-
-
-
-
-
+-   Kam, T. S. (2025). R for visual analytics. Retrieved from <https://r4va.netlify.app/>
+-   [Urban Redevelopment Authority (URA)](https://www.ura.gov.sg)
+-   [Spatial Data with ggplot2](https://jsimkins2.github.io/geog473-673/spatial-data-with-ggplot2.html)
