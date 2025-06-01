@@ -124,15 +124,15 @@ count_mentions_by_others <- nrow(mentions_nadia_by_others)
 cat("The number of messages that mention Nadia Conti but were not sent or received by her is:", count_mentions_by_others, "\n")
 ```
 
-::: {style="
-  border: 2px dotted #333333;
+<div style="
+  border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
-  background-color: #f3f3f3;
+  background-color: #f9f9f9;
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍♂️ Investigation Note**
 
 -   Nadia Conti received more than twice the number of messages she sent.
@@ -141,7 +141,7 @@ cat("The number of messages that mention Nadia Conti but were not sent or receiv
 -   Notably, there are **12 messages that mention Nadia Conti but were not sent or received by her**, indicating that she is **a subject of conversation or observation**, even when not directly involved in the exchange.
 
 Let’s continue examining the timing and content of these indirect mentions to determine whether they represent coordination, reporting, or suspicion.
-:::
+</div>
 
 # 7. Temporal Pattern of Nadia's Communications
 
@@ -178,15 +178,15 @@ mentions_nadia %>%
   theme_minimal()
 ```
 
-::: {style="
-  border: 2px dotted #333333;
+<div style="
+  border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
-  background-color: #f3f3f3;
+  background-color: #f9f9f9;
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍♀️ Investigation Note: Communication Timing**
 
 A dual analysis of **Nadia Conti’s** messaging activity and the messages referencing her reveals a synchronized temporal pattern centered around the **early morning hours (08:00–11:00)**.
@@ -195,7 +195,8 @@ A dual analysis of **Nadia Conti’s** messaging activity and the messages refer
 -   **Mentions of Nadia** by others cluster similarly, with spikes on **2040-10-07** and **2040-10-12**, pointing to her being a topic of **strategic discussion** during morning briefings.
 
 This alignment suggests Nadia may play a **central operational role**, either **directing plans** or being a **subject of surveillance or planning**.
-:::
+
+</div>
 
 # 8. Nadia's Relationship Network Graph
 
@@ -260,15 +261,15 @@ visNetwork(nodes = mention_nodes, edges = mention_edges) %>%
   visLegend()
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
-  background-color: #f1f1f1;
+  background-color: #f9f9f9;
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍♀️ Investigation Note: Nadia Conti’s Network Dynamics**
 
 A dual network analysis reveals two distinct but overlapping roles played by **Nadia Conti** within the communication ecosystem: one as a **central communicator**, the other as a **frequent subject of discussion**.
@@ -278,7 +279,7 @@ A dual network analysis reveals two distinct but overlapping roles played by **N
 -   In contrast, the **Mention Network** portrays Nadia as a **recurrent topic in third-party conversations**, even when she is not directly involved. Entities such as **Sailor Shifts Team** and **Oceanus City Council** reference her in their communications, indicating she is **monitored, discussed, or consulted** in broader strategic contexts.
 
 This combined view positions **Nadia Conti** as both a **core communicator** and a **strategic figure of interest**.
-:::
+</div>
 
 ## c. Nadia's Network involving Relationship, Associated Events
 
@@ -393,15 +394,15 @@ visNetwork(nodes, edges) %>%
   visLegend()
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
-  background-color: #f6f6f6;
+  background-color: #f9f9f9;
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍ Investigation Note**
 
 This comprehensive network visualization, while not delivering an instant or singular insight, is extremely valuable in tracing the **entire structure of interactions**, particularly across **Communication**, **Event**, and **Relationship** nodes.
@@ -412,7 +413,7 @@ It allows:
 -   Trace **evidence paths** back to **events or inferred relationships** (e.g., Colleague, Suspicious).
 -   Identify clusters, recurring actors, and potential outliers.
 -   Explore **multi-hop connections** that may reveal hidden influences or coordinated behavior.
-:::
+</div>
 
 # 9. Analyzing contents in Nadia's communications by date
 
@@ -442,7 +443,7 @@ ggplot(top_words_oct8, aes(x = reorder(word, n), y = n)) +
   theme_minimal()
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -450,7 +451,7 @@ ggplot(top_words_oct8, aes(x = reorder(word, n), y = n)) +
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍ Investigation Note: Keyword Patterns Suggest Nadia’s Strategic Role on October 8**
 
 -   On **October 8**, the term *nadia* dominates keyword frequency, confirming she is at the center of message activity.\
@@ -459,7 +460,7 @@ ggplot(top_words_oct8, aes(x = reorder(word, n), y = n)) +
 -   Temporal indicators such as **tomorrow** and **tonight** reflect **time-sensitive coordination**, possibly for execution phases or inspections.\
 -   The presence of **davis**, **elise**, and **mako** reinforces the idea of a **multi-party operation**, where Nadia may be issuing directives or receiving critical updates.\
 -   Keywords like **payment**, **documentation**, and **finalize** may indicate backend efforts to legitimize or complete operations—possibly tied to permitting or coverup.
-:::
+</div>
 
 ## b. October 9th
 
@@ -484,7 +485,7 @@ ggplot(top_words_oct9, aes(x = reorder(word, n), y = n)) +
   theme_minimal()
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -492,7 +493,7 @@ ggplot(top_words_oct9, aes(x = reorder(word, n), y = n)) +
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍ Investigation Note: Oct 9 Messages Suggest Escalation and Operational Urgency**
 
 -   The uniform keyword distribution indicates **broad coverage across themes**, rather than dominance by a few topics—suggesting a **multi-faceted coordination day**.\
@@ -501,7 +502,7 @@ ggplot(top_words_oct9, aes(x = reorder(word, n), y = n)) +
 -   Presence of **clarification**, **confirmed**, and **forms** points to **paperwork, documentation, or verification processes**, possibly in response to oversight or audit.\
 -   Names like **elise**, **miesel’s**, and **sam** imply involvement of multiple actors and may reflect distributed tasking or compartmentalized responsibilities.\
 -   Together, these terms suggest Nadia may be coordinating a **rapid deployment or adjustment phase**—balancing both **physical site actions** and **administrative coverage**.
-:::
+</div>
 
 ## c. October 10th
 
@@ -526,7 +527,7 @@ ggplot(top_words_oct10, aes(x = reorder(word, n), y = n)) +
   theme_minimal()
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -534,7 +535,7 @@ ggplot(top_words_oct10, aes(x = reorder(word, n), y = n)) +
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍ Investigation Note: Oct 10 Messages Emphasize Surveillance, Motives & Administrative Cover**
 
 -   Keywords such as **reef**, **nemo**, and **nadia** remain highly prominent, maintaining the geographic and leadership focus around **Nemo Reef operations**.\
@@ -543,7 +544,7 @@ ggplot(top_words_oct10, aes(x = reorder(word, n), y = n)) +
 -   Technical terms such as **parameters**, **tests**, **connection**, **alternate**, and **adaptation** reflect **reactive measures** or system adjustments, likely tied to maintaining operational integrity.\
 -   The appearance of **scientific**, **conservation**, and **city** points toward **public-facing narratives or environmental justifications**, possibly being prepared to support legitimacy.\
 -   Taken together, the October 10 keyword profile reflects a shift from action to **risk management, political positioning, and narrative control**.
-:::
+</div>
 
 ## d. October 11th
 
@@ -568,7 +569,7 @@ ggplot(top_words_oct11, aes(x = reorder(word, n), y = n)) +
   theme_minimal()
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -576,7 +577,7 @@ ggplot(top_words_oct11, aes(x = reorder(word, n), y = n)) +
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍ Investigation Note: Oct 11 Keywords Indicate Disruption, Surveillance & Response Planning**
 
 -   The appearance of terms like **suspicious**, **questioning**, and **redirected** points to a day marked by **disruption or external scrutiny**, likely triggering internal reassessment.\
@@ -585,7 +586,7 @@ ggplot(top_words_oct11, aes(x = reorder(word, n), y = n)) +
 -   The pairing of **delay**, **contingency**, and **immediately** strongly suggests **crisis mitigation measures**—either in planning or active execution.\
 -   Nadia and **Liam** are both mentioned, reinforcing the likelihood of **collaborative leadership** responding in real time.\
 -   The inclusion of **operations**, **plan**, and **clean** suggests that Oct 11 was a **day of strategic pivot**—realigning efforts to neutralize exposure or consolidate prior actions.
-:::
+</div>
 
 ## e. October 12th
 
@@ -610,7 +611,7 @@ ggplot(top_words_oct12, aes(x = reorder(word, n), y = n)) +
   theme_minimal()
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -618,7 +619,7 @@ ggplot(top_words_oct12, aes(x = reorder(word, n), y = n)) +
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️‍ Investigation Note: Oct 12 Shows Administrative Push and Coordinated Movement**
 
 -   **Nadia**, **permit**, and **meeting** lead the keyword count, signaling a day focused on **structured coordination**, formalities, and approvals.\
@@ -627,7 +628,7 @@ ggplot(top_words_oct12, aes(x = reorder(word, n), y = n)) +
 -   The inclusion of **tourism**, **closure**, **confidentiality**, and **appearance** signals concern about **public visibility and narrative control**, potentially related to surface-level legitimacy.\
 -   **Rodriguez**, **miesel**, **davis**, **remora**, and **neptune** all appear, indicating **multi-actor mobilization** across personnel and vessels.\
 -   Overall, Oct 12 reflects a **day of heavy logistical enforcement and media-sensitive planning**, likely to wrap or pivot operations with minimal disruption.
-:::
+</div>
 
 ## f. Timeline of Nadia-Linked Operational Focus (Oct 8–12, 2040)
 
@@ -700,22 +701,22 @@ ggplot(nadia_related, aes(x = timestamp, fill = Primary_Event)) +
   theme(legend.position = "right")
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
-  background-color: #f6f6f6;
+  background-color: #f9f9f9;
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️ Investigation Note: Nadia’s Timeline Reveals a Sharp Surge in High-Risk Events**
 
 -   **October 8–10**: Nadia is simultaneously involved in **Permit**, **Construction**, and **Patrol** event types — an uncommon triad that aligns with suspicious activity spikes across the overall timeline.\
 -   **Construction-related activity** by Nadia spikes only during these days — suggesting her involvement is both **selective** and **strategic**.\
 -   Nadia maintains a **persistent role in Permit operations**, with consistent involvement across multiple dates — notably **Oct 6, 8, 12, and 14**.\
 -   **Bribery and CoverUp events**, though present in the broader dataset, are **absent from Nadia’s direct messages**, indicating possible **delegation** of those actions to others (e.g., Davis, Liam).
-:::
+</div>
 
 ```{r cooccurrence-heatmap, message=FALSE, warning=FALSE}
 
@@ -738,7 +739,7 @@ ggplot(nadia_actor_events, aes(x = Primary_Event, y = fct_reorder(actor, -n), fi
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -746,14 +747,14 @@ ggplot(nadia_actor_events, aes(x = Primary_Event, y = fct_reorder(actor, -n), fi
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️ Investigation Note: Heatmap Shows Nadia as a Central Node in Permits & Construction**
 
 -   Nadia has the **highest message count** in the *Permit* category among all actors, underscoring her central role in legal/administrative coordination.\
 -   She is also **one of the few actors** with meaningful volume in both *Permit and Construction*, making her **one of the only actors bridging planning and execution**.\
 -   **Others like Davis, V. Miesel, and Liam** are also highly involved in Permit-related exchanges but show less overlap across multiple event types.\
 -   **Actors like Elise and Neptune** have moderate involvement in *Construction* — suggesting they are **co-executors** or **operational contacts** under Nadia’s direction.
-:::
+</div>
 
 # 11. Investigating other event types occured from Oct 8th to Oct 12th
 
@@ -803,7 +804,7 @@ ggplot(event_data, aes(x = Date_Factor, y = fct_rev(Evidence_Type), color = Invo
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -811,7 +812,7 @@ ggplot(event_data, aes(x = Date_Factor, y = fct_rev(Evidence_Type), color = Invo
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️ Investigation Note: Suspicious Patterns Implicating Nadia in Strategic Concealment**
 
 -   On **Oct 5**, Nadia revoked corridor access to Nemo Reef just **one day prior** to the detection of **unusual vessel traffic** and **underwater concrete construction**, suggesting deliberate shielding of covert activity.\
@@ -822,13 +823,13 @@ ggplot(event_data, aes(x = Date_Factor, y = fct_rev(Evidence_Type), color = Invo
 -   Notably, Nadia’s messages **avoid any direct reference to bribery or coverup**, despite their appearance elsewhere in the dataset. This may reflect **delegation of risk** to parties like **Davis or Liam**, insulating her from direct exposure.
 
 These alignments strongly suggest that **Nadia Conti played a calculated orchestration role**— managing operations, concealing presence, and relying on others to execute or absorb liability. Her behavioral footprint spans **administrative control**, **movement coordination**, and **strategic messaging omission**, forming a profile consistent with **compartmentalized command in covert activity**.
-:::
+</div>
 
 # 12. Summary of key findings
 
 ![](images/2.png) ![](images/3.png)
 
-:::: {style="
+<div style="
   border: 2px dotted #444;
   border-radius: 8px;
   padding: 16px;
@@ -836,7 +837,7 @@ These alignments strongly suggest that **Nadia Conti played a calculated orchest
   font-family: 'Segoe UI', sans-serif;
   color: #1a1a1a;
   line-height: 1.6;
-"}
+">
 **🕵️ Investigation Summary: Nadia Conti's Activities**
 
 **1. Communication Patterns**
@@ -877,7 +878,4 @@ These alignments strongly suggest that **Nadia Conti played a calculated orchest
     -   **Delegated riskier operations** (e.g., payment, surveillance diversion) to others
     -   **Obfuscated true operations** under legal cover (permits)
 
-<div>
-
 </div>
-::::
