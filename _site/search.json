@@ -1,158 +1,153 @@
 [
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html",
-    "href": "In-class_Ex/In-class_Ex05.html",
-    "title": "In-class Exercise 5",
+    "objectID": "In-class_Ex/In-class_Ex07.html",
+    "href": "In-class_Ex/In-class_Ex07.html",
+    "title": "In-class Exercise 7",
     "section": "",
-    "text": "In the code chunk below, p_load() of pacman package is used to load the R packages into R environment\n\npacman::p_load(tidyverse, jsonlite,\n               SmartEDA, tidygraph,\n               ggraph)\n\n\n\n\nIn the code chunk, fromJSON() of jsonlite package is used to import MC1_graph.json file into R and save the output subject\n\nkg &lt;- fromJSON(\"data/MC1_graph.json\")\n\n\n\n\n\nstr(kg, max.level = 1)\n\nList of 5\n $ directed  : logi TRUE\n $ multigraph: logi TRUE\n $ graph     :List of 2\n $ nodes     :'data.frame': 17412 obs. of  10 variables:\n $ links     :'data.frame': 37857 obs. of  4 variables:\n\n\n\n\n\n\nnodes_tbl &lt;- as_tibble(kg$nodes)\nedges_tbl &lt;- as_tibble(kg$links)",
-    "crumbs": [
-      "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
-    ]
+    "text": "library(shiny) library(tidyverse)\nexam &lt;- read_csv(“data/Exam_data.csv”) print(exam)\n\nDefine UI for application that draws a histogram\nui &lt;- fluidPage( titlePanel(“Pupils Exam Results Dashboard”), sidebarLayout( sidebarPanel( selectInput(inputId = “variable”, label = “Subject:”, choices = c(“English” = “ENGLISH”, “Maths” = “MATHS”, “Science” = “SCIENCE”), selected = “ENGLISH”), sliderInput(inputId = “bins”, label = “Number of Bins”, min = 5, max = 20, value= 10) ), mainPanel( plotOutput(“distPlot”) ) ) )\n\n\nDefine server logic required to draw a histogram\nserver &lt;- function(input, output){ output$distPlot &lt;- renderPlot({ ggplot(exam, aes_string(x = input$variable)) + geom_histogram(bins = input$bins, color=“black”, fill=“light blue”) }) }\n\n\nRun the application\nshinyApp(ui = ui, server = server)"
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#loading-packages",
-    "href": "In-class_Ex/In-class_Ex05.html#loading-packages",
-    "title": "In-class Exercise 5",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
     "section": "",
-    "text": "In the code chunk below, p_load() of pacman package is used to load the R packages into R environment\n\npacman::p_load(tidyverse, jsonlite,\n               SmartEDA, tidygraph,\n               ggraph)",
+    "text": "Oceanus, once reliant on fishing, has undergone significant changes in the past decade. As authorities cracked down on illegal fishing, many suspects redirected their investments into the booming ocean tourism sector. This shift brought new attention to the island, especially after pop star Sailor Shift announced plans to shoot a music video there.\nAmidst these developments, journalist Clepper Jessen, formerly an analyst at FishEye—began investigating the sudden closure of Nemo Reef",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#importing-json",
-    "href": "In-class_Ex/In-class_Ex05.html#importing-json",
-    "title": "In-class Exercise 5",
-    "section": "",
-    "text": "In the code chunk, fromJSON() of jsonlite package is used to import MC1_graph.json file into R and save the output subject\n\nkg &lt;- fromJSON(\"data/MC1_graph.json\")",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#summary-of-nadia-conti-profile",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#summary-of-nadia-conti-profile",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "Summary of Nadia Conti profile",
+    "text": "Summary of Nadia Conti profile\n\nThis suspect had been involved in an illegal fishing scheme. She is suspected that she may have continued illicit activity within Oceanus.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#inspecting-structure",
-    "href": "In-class_Ex/In-class_Ex05.html#inspecting-structure",
-    "title": "In-class Exercise 5",
-    "section": "",
-    "text": "str(kg, max.level = 1)\n\nList of 5\n $ directed  : logi TRUE\n $ multigraph: logi TRUE\n $ graph     :List of 2\n $ nodes     :'data.frame': 17412 obs. of  10 variables:\n $ links     :'data.frame': 37857 obs. of  4 variables:",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-direct-communication-network-center-nadia",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-direct-communication-network-center-nadia",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "a. Direct Communication Network (Center = Nadia)",
+    "text": "a. Direct Communication Network (Center = Nadia)\n\nnadia_edges &lt;- nadia_msgs %&gt;%\n  count(sender_label, receiver_label) %&gt;%\n  filter(!is.na(sender_label), !is.na(receiver_label)) %&gt;%\n  rename(from = sender_label, to = receiver_label, value = n)\n\nentity_info &lt;- nadia_msgs %&gt;%\n  select(name = sender_label, type = sender_type) %&gt;%\n  bind_rows(nadia_msgs %&gt;% select(name = receiver_label, type = receiver_type)) %&gt;%\n  distinct()\n\nnadia_nodes &lt;- tibble(name = unique(c(nadia_edges$from, nadia_edges$to))) %&gt;%\n  left_join(entity_info, by = \"name\") %&gt;% \n  mutate(group = ifelse(name == \"Nadia Conti\", \"Nadia Conti\", type),\n         id = name,\n         label = name) %&gt;%\n  replace_na(list(group = \"Unknown\"))  \n\nvisNetwork(nodes = nadia_nodes, edges = nadia_edges) %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 123) %&gt;%\n  visPhysics(stabilization = TRUE) %&gt;%\n  visInteraction(navigationButtons = TRUE) %&gt;%\n  visLegend()",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#extracting-and-inspecting",
-    "href": "In-class_Ex/In-class_Ex05.html#extracting-and-inspecting",
-    "title": "In-class Exercise 5",
-    "section": "",
-    "text": "nodes_tbl &lt;- as_tibble(kg$nodes)\nedges_tbl &lt;- as_tibble(kg$links)",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-mention-network-center-nadia-but-not-always-direct-link",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-mention-network-center-nadia-but-not-always-direct-link",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "b. Mention Network (Center = Nadia, but not always direct link)",
+    "text": "b. Mention Network (Center = Nadia, but not always direct link)\n\nmention_edges &lt;- mentions_nadia %&gt;%\n  count(sender_label, receiver_label) %&gt;%\n  rename(from = sender_label, to = receiver_label, value = n)\n\n# Step 3: Create node attribute table\nentity_info &lt;- mentions_nadia %&gt;%\n  select(name = sender_label, type = sender_type) %&gt;%\n  bind_rows(mentions_nadia %&gt;% select(name = receiver_label, type = receiver_type)) %&gt;%\n  distinct()\n\nmention_nodes &lt;- tibble(name = unique(c(mention_edges$from, mention_edges$to))) %&gt;%\n  left_join(entity_info, by = \"name\") %&gt;%\n  mutate(\n    group = ifelse(str_detect(name, \"Nadia\"), \"Nadia\", type),\n    id = name,\n    label = name\n  ) %&gt;%\n  replace_na(list(group = \"Unknown\"))\n\n# Step 4: Plot the network\nvisNetwork(nodes = mention_nodes, edges = mention_edges) %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 123) %&gt;%\n  visPhysics(stabilization = TRUE) %&gt;%\n  visInteraction(navigationButtons = TRUE) %&gt;%\n  visLegend()\n\n\n\n\n\n\n🕵️‍♀️ Investigation Note: Nadia Conti’s Network Dynamics\nA dual network analysis reveals two distinct but overlapping roles played by Nadia Conti within the communication ecosystem: one as a central communicator, the other as a frequent subject of discussion.\n\nIn the Direct Communication Network, Nadia is the focal point of interactions, maintaining high-volume, bidirectional exchanges with a range of individuals, organizations, vessels, and locations. The diversity and intensity of these connections suggest she holds a key operational or coordinating role.\nIn contrast, the Mention Network portrays Nadia as a recurrent topic in third-party conversations, even when she is not directly involved. Entities such as Sailor Shifts Team and Oceanus City Council reference her in their communications, indicating she is monitored, discussed, or consulted in broader strategic contexts.\n\nThis combined view positions Nadia Conti as both a core communicator and a strategic figure of interest.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#edge-type",
-    "href": "In-class_Ex/In-class_Ex05.html#edge-type",
-    "title": "In-class Exercise 5",
-    "section": "2.1. Edge Type",
-    "text": "2.1. Edge Type\n\nggplot(data = edges_tbl, \n       aes(y = `Edge Type`, fill = `Edge Type`)) +\n  geom_bar()",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-nadias-network-involving-relationship-associated-events",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-nadias-network-involving-relationship-associated-events",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "c. Nadia’s Network involving Relationship, Associated Events",
+    "text": "c. Nadia’s Network involving Relationship, Associated Events\n\ndf &lt;- df %&gt;% clean_names()\n\ndf &lt;- df %&gt;%\n  mutate(\n    rel_label = str_remove(relationship, \"^Relationship_\"),\n    rel_label = str_remove(rel_label, \"_\\\\d+$\")\n  )\n\ndf &lt;- df %&gt;%\n  mutate(\n    event_type = case_when(\n      str_detect(event, \"Event_Monitoring_\") ~ \"Monitoring\",\n      str_detect(event, \"Event_Assessment_\") ~ \"Assessment\",\n      str_detect(event, \"Event_VesselMovement_\") ~ \"VesselMovement\",\n      TRUE ~ \"Other\"\n    )\n  )\n\nsender_nodes &lt;- df %&gt;%\n  distinct(id = sender, label = sender, group = sender_type)\n\nreceiver_nodes &lt;- df %&gt;%\n  distinct(id = receiver, label = receiver, group = receiver_type)\n\ncomm_nodes &lt;- df %&gt;%\n  distinct(id = message_id, label = message_id, group = \"Communication\")\n\nrel_nodes &lt;- df %&gt;%\n  distinct(id = relationship, label = rel_label, group = \"Relationship\")\n\nevent_nodes &lt;- df %&gt;%\n  distinct(id = event, label = event, group = event_type)\n\nmonitoring_entities &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Monitoring_\")) %&gt;%\n  select(monitoring_type, findings, target, source) %&gt;%\n  pivot_longer(everything(), values_to = \"id\") %&gt;%\n  distinct(id) %&gt;%\n  mutate(label = id, group = \"MonitoringAttribute\")\n\nassessment_entities &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Assessment_\")) %&gt;%\n  select(assessment_type, results) %&gt;%\n  pivot_longer(everything(), values_to = \"id\") %&gt;%\n  distinct(id) %&gt;%\n  mutate(label = id, group = \"AssessmentAttribute\")\n\nmovement_entities &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_VesselMovement_\")) %&gt;%\n  select(movement_type, destination) %&gt;%\n  pivot_longer(everything(), values_to = \"id\") %&gt;%\n  distinct(id) %&gt;%\n  mutate(label = id, group = \"MovementAttribute\")\n\nnodes &lt;- bind_rows(\n  sender_nodes,\n  receiver_nodes,\n  comm_nodes,\n  rel_nodes,\n  event_nodes,\n  monitoring_entities,\n  assessment_entities,\n  movement_entities\n) %&gt;% distinct(id, .keep_all = TRUE)\n\nedges1 &lt;- df %&gt;%\n  transmute(from = sender, to = message_id)\n\nedges2 &lt;- df %&gt;%\n  transmute(from = message_id, to = receiver)\n\nedges3 &lt;- df %&gt;%\n  transmute(from = message_id, to = relationship)\n\nedges4 &lt;- df %&gt;%\n  transmute(from = message_id, to = event)\n\nmonitoring_edges &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Monitoring_\")) %&gt;%\n  select(event, monitoring_type, findings, target, source) %&gt;%\n  pivot_longer(-event, values_to = \"to\") %&gt;%\n  transmute(from = event, to)\n\nassessment_edges &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Assessment_\")) %&gt;%\n  select(event, assessment_type, results) %&gt;%\n  pivot_longer(-event, values_to = \"to\") %&gt;%\n  transmute(from = event, to)\n\nmovement_edges &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_VesselMovement_\")) %&gt;%\n  select(event, movement_type, destination) %&gt;%\n  pivot_longer(-event, values_to = \"to\") %&gt;%\n  transmute(from = event, to)\n\nedges &lt;- bind_rows(edges1, edges2, edges3, edges4, monitoring_edges, assessment_edges, movement_edges) %&gt;%\n  filter(!is.na(from), !is.na(to))\n\nvisNetwork(nodes, edges) %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 123) %&gt;%\n  visLegend()\n\n\n\n\n\n\n🕵️‍ Investigation Note\nThis comprehensive network visualization, while not delivering an instant or singular insight, is extremely valuable in tracing the entire structure of interactions, particularly across Communication, Event, and Relationship nodes.\nIt allows:\n\nObserve how entities like Nadia Conti interact with others through both direct and indirect links.\nTrace evidence paths back to events or inferred relationships (e.g., Colleague, Suspicious).\nIdentify clusters, recurring actors, and potential outliers.\nExplore multi-hop connections that may reveal hidden influences or coordinated behavior.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#node-type",
-    "href": "In-class_Ex/In-class_Ex05.html#node-type",
-    "title": "In-class Exercise 5",
-    "section": "2.2. Node Type",
-    "text": "2.2. Node Type\n\nggplot(data = nodes_tbl, \n       aes(y = `Node Type`, fill = `Node Type`)) +\n  geom_bar()",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-october-8th",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-october-8th",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "a. October 8th",
+    "text": "a. October 8th\n\nnadia_related &lt;- bind_rows(nadia_msgs, mentions_nadia_by_others) %&gt;%\n  distinct(message_id, .keep_all = TRUE)\n\ndata(\"stop_words\")\n\nmessages_oct8 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-08\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct8 &lt;- messages_oct8 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct8, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 8, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Keyword Patterns Suggest Nadia’s Strategic Role on October 8\n\nOn October 8, the term nadia dominates keyword frequency, confirming she is at the center of message activity.\n\nHigh-ranking keywords such as reef, nemo, neptune, and marina suggest operational ties to maritime locations—particularly around Nemo Reef, a previously flagged hotspot.\n\nTerms like foundation, equipment, and modified imply ongoing construction or infrastructure adjustments, likely related to permit or logistics planning.\n\nTemporal indicators such as tomorrow and tonight reflect time-sensitive coordination, possibly for execution phases or inspections.\n\nThe presence of davis, elise, and mako reinforces the idea of a multi-party operation, where Nadia may be issuing directives or receiving critical updates.\n\nKeywords like payment, documentation, and finalize may indicate backend efforts to legitimize or complete operations—possibly tied to permitting or coverup.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#step-1-mapping-from-node-id-to-row-index",
-    "href": "In-class_Ex/In-class_Ex05.html#step-1-mapping-from-node-id-to-row-index",
-    "title": "In-class Exercise 5",
-    "section": "3.1. Step 1: Mapping from node ID to row Index",
-    "text": "3.1. Step 1: Mapping from node ID to row Index\n\nid_map &lt;- tibble(id=nodes_tbl$id,\n                 index = seq_len(nrow(nodes_tbl)))\n\nThis ensures each id from your node list is mapped to the correct row number.",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-october-9th",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-october-9th",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "b. October 9th",
+    "text": "b. October 9th\n\ndata(\"stop_words\")\n\nmessages_oct9 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-09\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct9 &lt;- messages_oct9 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct9, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 9, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 9 Messages Suggest Escalation and Operational Urgency\n\nThe uniform keyword distribution indicates broad coverage across themes, rather than dominance by a few topics—suggesting a multi-faceted coordination day.\n\nWords like urgent, escalating, and contingencies highlight a shift toward crisis response or risk mitigation, possibly reacting to earlier operations or external scrutiny.\n\nThe inclusion of underwater, installation, concrete, and structures implies active engineering work, potentially below surface level at or near Nemo Reef.\n\nPresence of clarification, confirmed, and forms points to paperwork, documentation, or verification processes, possibly in response to oversight or audit.\n\nNames like elise, miesel’s, and sam imply involvement of multiple actors and may reflect distributed tasking or compartmentalized responsibilities.\n\nTogether, these terms suggest Nadia may be coordinating a rapid deployment or adjustment phase—balancing both physical site actions and administrative coverage.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#step-2-map-source-and-target-ids-to-row-indices",
-    "href": "In-class_Ex/In-class_Ex05.html#step-2-map-source-and-target-ids-to-row-indices",
-    "title": "In-class Exercise 5",
-    "section": "3.2. Step 2: Map source and target IDs to row indices",
-    "text": "3.2. Step 2: Map source and target IDs to row indices\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n\n  rename(from = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n\n  rename(to = index)",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-october-10th",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-october-10th",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "c. October 10th",
+    "text": "c. October 10th\n\ndata(\"stop_words\")\n\nmessages_oct10 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-10\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct10 &lt;- messages_oct10 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct10, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 10, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 10 Messages Emphasize Surveillance, Motives & Administrative Cover\n\nKeywords such as reef, nemo, and nadia remain highly prominent, maintaining the geographic and leadership focus around Nemo Reef operations.\n\nA strong presence of terms like ulterior, suspect, surveillance, and motives indicates internal concern or monitoring—possibly suggesting either external threat assessment or internal scrutiny.\n\nReferences to financial, claims, evidence, closure, and council imply administrative or legal maneuvering, hinting at preparations for regulatory defense or policy justification.\n\nTechnical terms such as parameters, tests, connection, alternate, and adaptation reflect reactive measures or system adjustments, likely tied to maintaining operational integrity.\n\nThe appearance of scientific, conservation, and city points toward public-facing narratives or environmental justifications, possibly being prepared to support legitimacy.\n\nTaken together, the October 10 keyword profile reflects a shift from action to risk management, political positioning, and narrative control.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#step-3-filter-out-any-unmatched-invalid-edges",
-    "href": "In-class_Ex/In-class_Ex05.html#step-3-filter-out-any-unmatched-invalid-edges",
-    "title": "In-class Exercise 5",
-    "section": "3.3. Step 3: Filter out any unmatched (invalid) edges",
-    "text": "3.3. Step 3: Filter out any unmatched (invalid) edges\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  filter(!is.na(from), !is.na(to))",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#d.-october-11th",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#d.-october-11th",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "d. October 11th",
+    "text": "d. October 11th\n\ndata(\"stop_words\")\n\nmessages_oct11 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-11\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct11 &lt;- messages_oct11 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct11, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 11, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 11 Keywords Indicate Disruption, Surveillance & Response Planning\n\nThe appearance of terms like suspicious, questioning, and redirected points to a day marked by disruption or external scrutiny, likely triggering internal reassessment.\n\nLocation-based terms such as southwest, northern, and quadrant hint at regional segmentation of activity, possibly indicating where operations were either moved or monitored.\n\nKeywords like rov, ecovigil, and clean imply use of remote or environmental surveillance systems, suggesting heightened visibility or a cover effort.\n\nThe pairing of delay, contingency, and immediately strongly suggests crisis mitigation measures—either in planning or active execution.\n\nNadia and Liam are both mentioned, reinforcing the likelihood of collaborative leadership responding in real time.\n\nThe inclusion of operations, plan, and clean suggests that Oct 11 was a day of strategic pivot—realigning efforts to neutralize exposure or consolidate prior actions.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#step-4-creating-the-graph",
-    "href": "In-class_Ex/In-class_Ex05.html#step-4-creating-the-graph",
-    "title": "In-class Exercise 5",
-    "section": "3.4. Step 4: Creating the graph",
-    "text": "3.4. Step 4: Creating the graph\nLastly, tbl_graph is used to create tidygraph’s graph object by using the code junk below.\n\ngraph &lt;- tbl_graph(nodes = nodes_tbl, \n                   edges = edges_tbl,\n                   directed = kg$directed)",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#e.-october-12th",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#e.-october-12th",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "e. October 12th",
+    "text": "e. October 12th\n\ndata(\"stop_words\")\n\nmessages_oct12 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-12\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct12 &lt;- messages_oct12 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct12, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 12, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 12 Shows Administrative Push and Coordinated Movement\n\nNadia, permit, and meeting lead the keyword count, signaling a day focused on structured coordination, formalities, and approvals.\n\nTerms like 7844, cr, 0600, and 2100 suggest precise scheduling, perhaps involving coded operations or shift-based execution.\n\nFrequent mentions of documentation, team, security, and update point to active enforcement and reporting—possibly to align with oversight timelines.\n\nThe inclusion of tourism, closure, confidentiality, and appearance signals concern about public visibility and narrative control, potentially related to surface-level legitimacy.\n\nRodriguez, miesel, davis, remora, and neptune all appear, indicating multi-actor mobilization across personnel and vessels.\n\nOverall, Oct 12 reflects a day of heavy logistical enforcement and media-sensitive planning, likely to wrap or pivot operations with minimal disruption.",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#visualizing-the-whole-graph",
-    "href": "In-class_Ex/In-class_Ex05.html#visualizing-the-whole-graph",
-    "title": "In-class Exercise 5",
-    "section": "4.1. Visualizing the whole graph",
-    "text": "4.1. Visualizing the whole graph\n\nggraph(graph, layout =\"fr\") + \n  geom_edge_link(aplpha = 0.3, colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), size = 4) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  theme_void()",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#f.-timeline-of-nadia-linked-operational-focus-oct-812-2040",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#f.-timeline-of-nadia-linked-operational-focus-oct-812-2040",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "f. Timeline of Nadia-Linked Operational Focus (Oct 8–12, 2040)",
+    "text": "f. Timeline of Nadia-Linked Operational Focus (Oct 8–12, 2040)",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
-    "objectID": "In-class_Ex/In-class_Ex05.html#visualizing-the-sub-graph",
-    "href": "In-class_Ex/In-class_Ex05.html#visualizing-the-sub-graph",
-    "title": "In-class Exercise 5",
-    "section": "4.2. Visualizing the sub-graph",
-    "text": "4.2. Visualizing the sub-graph\nIn this section, we are interested to create a sub-graph based on MemberOf value in Edge_Type column of the edges column of the edge data frame.\n\n4.2.1. Step 1: Filter edges to only `MemberOf’\n\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;% \n  filter(`Edge Type` == \"MemberOf\")\n\n\n\n4.2.2. Step 2: Extract only connected nodes (i.e., used in these edges)\n\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique()\n\n\n\n4.2.3. Step 3: Keep only those nodes\n\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id)\n\n\n\n4.2.4. Step 4: Plot the sub-graph\n\nggraph(graph_memberof, layout = \"fr\") + \n  geom_edge_link(aplpha = 0.5, colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), size = 1) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  theme_void()",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#conclusion-do-the-visual-findings-support-cleppers-suspicion",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#conclusion-do-the-visual-findings-support-cleppers-suspicion",
+    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "section": "Conclusion: Do the Visual Findings Support Clepper’s Suspicion?",
+    "text": "Conclusion: Do the Visual Findings Support Clepper’s Suspicion?\nYes. Strongly.\n\nThe alignment between Nadia’s peaks in communication, permit-handling, and confirmed movement/construction at Nemo Reef (despite her claiming cancellation) supports Clepper’s suspicion.\nEven without direct messages showing illicit orders, visual analytics indicate:\n\nNadia controlled logistics, timelines, and access\nDelegated riskier operations (e.g., payment, surveillance diversion) to others\nObfuscated true operations under legal cover (permits)",
     "crumbs": [
       "Home",
-      "In-class Exercise",
-      "In-class Exercise 5"
+      "Take-home Exercise",
+      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
     ]
   },
   {
@@ -2177,196 +2172,159 @@
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
+    "objectID": "In-class_Ex/In-class_Ex05.html",
+    "href": "In-class_Ex/In-class_Ex05.html",
+    "title": "In-class Exercise 5",
     "section": "",
-    "text": "Oceanus, once reliant on fishing, has undergone significant changes in the past decade. As authorities cracked down on illegal fishing, many suspects redirected their investments into the booming ocean tourism sector. This shift brought new attention to the island, especially after pop star Sailor Shift announced plans to shoot a music video there.\nAmidst these developments, journalist Clepper Jessen, formerly an analyst at FishEye—began investigating the sudden closure of Nemo Reef",
+    "text": "In the code chunk below, p_load() of pacman package is used to load the R packages into R environment\n\npacman::p_load(tidyverse, jsonlite,\n               SmartEDA, tidygraph,\n               ggraph)\n\n\n\n\nIn the code chunk, fromJSON() of jsonlite package is used to import MC1_graph.json file into R and save the output subject\n\nkg &lt;- fromJSON(\"data/MC1_graph.json\")\n\n\n\n\n\nstr(kg, max.level = 1)\n\nList of 5\n $ directed  : logi TRUE\n $ multigraph: logi TRUE\n $ graph     :List of 2\n $ nodes     :'data.frame': 17412 obs. of  10 variables:\n $ links     :'data.frame': 37857 obs. of  4 variables:\n\n\n\n\n\n\nnodes_tbl &lt;- as_tibble(kg$nodes)\nedges_tbl &lt;- as_tibble(kg$links)",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#summary-of-nadia-conti-profile",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#summary-of-nadia-conti-profile",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "Summary of Nadia Conti profile",
-    "text": "Summary of Nadia Conti profile\n\nThis suspect had been involved in an illegal fishing scheme. She is suspected that she may have continued illicit activity within Oceanus.",
-    "crumbs": [
-      "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
-    ]
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#nadia-contis-suspect-board",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#nadia-contis-suspect-board",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "Nadia Conti’s Suspect Board",
-    "text": "Nadia Conti’s Suspect Board\nThe flow for investigation has been draw on the suspect board"
-  },
-  {
-    "objectID": "In-class_Ex/In-class_Ex07.html",
-    "href": "In-class_Ex/In-class_Ex07.html",
-    "title": "In-class Exercise 7",
+    "objectID": "In-class_Ex/In-class_Ex05.html#loading-packages",
+    "href": "In-class_Ex/In-class_Ex05.html#loading-packages",
+    "title": "In-class Exercise 5",
     "section": "",
-    "text": "library(shiny) library(tidyverse)\nexam &lt;- read_csv(“data/Exam_data.csv”) print(exam)\n\nDefine UI for application that draws a histogram\nui &lt;- fluidPage( titlePanel(“Pupils Exam Results Dashboard”), sidebarLayout( sidebarPanel( selectInput(inputId = “variable”, label = “Subject:”, choices = c(“English” = “ENGLISH”, “Maths” = “MATHS”, “Science” = “SCIENCE”), selected = “ENGLISH”), sliderInput(inputId = “bins”, label = “Number of Bins”, min = 5, max = 20, value= 10) ), mainPanel( plotOutput(“distPlot”) ) ) )\n\n\nDefine server logic required to draw a histogram\nserver &lt;- function(input, output){ output$distPlot &lt;- renderPlot({ ggplot(exam, aes_string(x = input$variable)) + geom_histogram(bins = input$bins, color=“black”, fill=“light blue”) }) }\n\n\nRun the application\nshinyApp(ui = ui, server = server)"
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#graph-generation-process-for-nadia-conti",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#graph-generation-process-for-nadia-conti",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "🔧 Graph Generation Process for Nadia Conti",
-    "text": "🔧 Graph Generation Process for Nadia Conti\n\nlibrary(tidyverse)\n\n# STEP 1: Create Communication Nodes\ncomm_nodes &lt;- nadia_msgs %&gt;%\n  mutate(\n    comm_id = paste0(\"msg_\", row_number()),\n    type = \"Communication\",\n    label = str_trunc(content, 50),\n    title = paste0(\"From: \", sender, \"&lt;br&gt;To: \", receiver, \"&lt;br&gt;\", content)\n  ) %&gt;%\n  select(id = comm_id, label, type, title)\n\n# STEP 2: Entity Nodes\nentity_nodes &lt;- nadia_msgs %&gt;%\n  select(sender_label, receiver_label) %&gt;%\n  pivot_longer(cols = everything(), values_to = \"person\") %&gt;%  # not \"name\"\n  distinct(person) %&gt;%\n  mutate(id = person, label = person,\n         group = ifelse(person == \"Nadia Conti\", \"Nadia Conti\", \"Others\"),\n         type = \"Person\")\n\n# STEP 3: Communication Edges\ncomm_edges &lt;- nadia_msgs %&gt;%\n  mutate(comm_id = paste0(\"msg_\", row_number())) %&gt;%\n  select(sender, receiver, comm_id) %&gt;%\n  pivot_longer(cols = c(sender, receiver), names_to = \"role\", values_to = \"entity\") %&gt;%\n  mutate(\n    from = ifelse(role == \"sender\", entity, comm_id),\n    to = ifelse(role == \"sender\", comm_id, entity),\n    value = 1\n  ) %&gt;%\n  select(from, to, value)\n\n# STEP 4: Infer Colleague Relationship (if sender and receiver are both people and involve Nadia)\nrelationship_edges &lt;- nadia_msgs %&gt;%\n  filter(sender == \"Nadia Conti\" | receiver == \"Nadia Conti\") %&gt;%\n  mutate(\n    rel_id = paste0(\"rel_\", row_number()),\n    relation = \"Colleague\",\n    entity_1 = sender,\n    entity_2 = receiver,\n    comm_id = paste0(\"msg_\", row_number())\n  ) %&gt;%\n  select(rel_id, relation, entity_1, entity_2, comm_id)\n\n# Create relationship nodes\nrel_nodes &lt;- relationship_edges %&gt;%\n  select(id = rel_id, label = relation) %&gt;%\n  distinct() %&gt;%\n  mutate(type = \"Relationship\")\n\n# Link entities to relationship\nrel_entity_edges &lt;- relationship_edges %&gt;%\n  pivot_longer(cols = c(entity_1, entity_2), values_to = \"entity\") %&gt;%\n  select(from = entity, to = rel_id) %&gt;%\n  mutate(value = 1)\n\n# Link messages to relationship as evidence\nevidence_edges &lt;- relationship_edges %&gt;%\n  select(from = comm_id, to = rel_id) %&gt;%\n  mutate(value = 1)\n\n# Combine all nodes and edges\nall_nodes &lt;- bind_rows(entity_nodes, comm_nodes, rel_nodes)\nall_edges &lt;- bind_rows(comm_edges, rel_entity_edges, evidence_edges)\n\n# View structure\nhead(all_nodes)\n\n# A tibble: 6 × 6\n  person               id                   label              group type  title\n  &lt;chr&gt;                &lt;chr&gt;                &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;\n1 Nadia Conti          Nadia Conti          Nadia Conti        Nadi… Pers… &lt;NA&gt; \n2 Haacklee Harbor      Haacklee Harbor      Haacklee Harbor    Othe… Pers… &lt;NA&gt; \n3 Oceanus City Council Oceanus City Council Oceanus City Coun… Othe… Pers… &lt;NA&gt; \n4 Liam Thorne          Liam Thorne          Liam Thorne        Othe… Pers… &lt;NA&gt; \n5 Neptune              Neptune              Neptune            Othe… Pers… &lt;NA&gt; \n6 Marlin               Marlin               Marlin             Othe… Pers… &lt;NA&gt; \n\nhead(all_edges)\n\n# A tibble: 6 × 3\n  from        to                   value\n  &lt;chr&gt;       &lt;chr&gt;                &lt;dbl&gt;\n1 Nadia Conti msg_1                    1\n2 msg_1       Haacklee Harbor          1\n3 Nadia Conti msg_2                    1\n4 msg_2       Oceanus City Council     1\n5 Nadia Conti msg_3                    1\n6 msg_3       Liam Thorne              1\n\n\n\nlibrary(tidyverse)\nlibrary(visNetwork)\n\n# Communication event nodes\ncomm_nodes &lt;- nadia_msgs %&gt;%\n  mutate(id = paste0(\"msg_\", row_number()),\n         label = str_trunc(content, 50),\n         group = \"Communication\",\n         type = \"Communication\",\n         title = paste0(\"From: \", sender_label, \"&lt;br&gt;To: \", receiver_label, \"&lt;br&gt;\", content)) %&gt;%\n  select(id, label, group, title)\n\nentity_nodes &lt;- nadia_msgs %&gt;%\n  select(sender_label, receiver_label) %&gt;%\n  pivot_longer(cols = everything(), values_to = \"person\") %&gt;%  # not \"name\"\n  distinct(person) %&gt;%\n  mutate(id = person, label = person,\n         group = ifelse(person == \"Nadia Conti\", \"Nadia Conti\", \"Others\"),\n         type = \"Person\")\n\ncomm_edges &lt;- nadia_msgs %&gt;%\n  mutate(comm_id = paste0(\"msg_\", row_number())) %&gt;%\n  select(comm_id, sender_label, receiver_label) %&gt;%\n  pivot_longer(cols = c(sender_label, receiver_label), names_to = \"direction\", values_to = \"entity\") %&gt;%\n  mutate(from = ifelse(direction == \"sender_label\", entity, comm_id),\n         to   = ifelse(direction == \"sender_label\", comm_id, entity),\n         value = 1) %&gt;%\n  select(from, to, value)\n\n# Mock: Nadia and Small Fry are colleagues based on content\nrel_nodes &lt;- tibble(id = \"rel_1\",\n                    label = \"Colleagues\",\n                    group = \"Relationship\",\n                    type = \"Colleague\")\n\nrel_edges &lt;- tribble(\n  ~from, ~to, ~value,\n  \"Nadia Conti\", \"rel_1\", 1,\n  \"Small Fry\", \"rel_1\", 1,\n  \"msg_12\", \"rel_1\", 1  # Assume message 12 provides evidence\n)\n\nall_nodes &lt;- bind_rows(entity_nodes, comm_nodes, rel_nodes)\nall_edges &lt;- bind_rows(comm_edges, rel_edges)\n\nvisNetwork(all_nodes, all_edges) %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 123) %&gt;%\n  visPhysics(stabilization = TRUE) %&gt;%\n  visInteraction(navigationButtons = TRUE) %&gt;%\n  visLegend()"
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-direct-communication-network-center-nadia",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-direct-communication-network-center-nadia",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "a. Direct Communication Network (Center = Nadia)",
-    "text": "a. Direct Communication Network (Center = Nadia)\n\nnadia_edges &lt;- nadia_msgs %&gt;%\n  count(sender_label, receiver_label) %&gt;%\n  filter(!is.na(sender_label), !is.na(receiver_label)) %&gt;%\n  rename(from = sender_label, to = receiver_label, value = n)\n\nentity_info &lt;- nadia_msgs %&gt;%\n  select(name = sender_label, type = sender_type) %&gt;%\n  bind_rows(nadia_msgs %&gt;% select(name = receiver_label, type = receiver_type)) %&gt;%\n  distinct()\n\nnadia_nodes &lt;- tibble(name = unique(c(nadia_edges$from, nadia_edges$to))) %&gt;%\n  left_join(entity_info, by = \"name\") %&gt;% \n  mutate(group = ifelse(name == \"Nadia Conti\", \"Nadia Conti\", type),\n         id = name,\n         label = name) %&gt;%\n  replace_na(list(group = \"Unknown\"))  \n\nvisNetwork(nodes = nadia_nodes, edges = nadia_edges) %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 123) %&gt;%\n  visPhysics(stabilization = TRUE) %&gt;%\n  visInteraction(navigationButtons = TRUE) %&gt;%\n  visLegend()",
+    "text": "In the code chunk below, p_load() of pacman package is used to load the R packages into R environment\n\npacman::p_load(tidyverse, jsonlite,\n               SmartEDA, tidygraph,\n               ggraph)",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-mention-network-center-nadia-but-not-always-direct-link",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-mention-network-center-nadia-but-not-always-direct-link",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "b. Mention Network (Center = Nadia, but not always direct link)",
-    "text": "b. Mention Network (Center = Nadia, but not always direct link)\n\nmention_edges &lt;- mentions_nadia %&gt;%\n  count(sender_label, receiver_label) %&gt;%\n  rename(from = sender_label, to = receiver_label, value = n)\n\n# Step 3: Create node attribute table\nentity_info &lt;- mentions_nadia %&gt;%\n  select(name = sender_label, type = sender_type) %&gt;%\n  bind_rows(mentions_nadia %&gt;% select(name = receiver_label, type = receiver_type)) %&gt;%\n  distinct()\n\nmention_nodes &lt;- tibble(name = unique(c(mention_edges$from, mention_edges$to))) %&gt;%\n  left_join(entity_info, by = \"name\") %&gt;%\n  mutate(\n    group = ifelse(str_detect(name, \"Nadia\"), \"Nadia\", type),\n    id = name,\n    label = name\n  ) %&gt;%\n  replace_na(list(group = \"Unknown\"))\n\n# Step 4: Plot the network\nvisNetwork(nodes = mention_nodes, edges = mention_edges) %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 123) %&gt;%\n  visPhysics(stabilization = TRUE) %&gt;%\n  visInteraction(navigationButtons = TRUE) %&gt;%\n  visLegend()\n\n\n\n\n\n\n🕵️‍♀️ Investigation Note: Nadia Conti’s Network Dynamics\nA dual network analysis reveals two distinct but overlapping roles played by Nadia Conti within the communication ecosystem: one as a central communicator, the other as a frequent subject of discussion.\n\nIn the Direct Communication Network, Nadia is the focal point of interactions, maintaining high-volume, bidirectional exchanges with a range of individuals, organizations, vessels, and locations. The diversity and intensity of these connections suggest she holds a key operational or coordinating role.\nIn contrast, the Mention Network portrays Nadia as a recurrent topic in third-party conversations, even when she is not directly involved. Entities such as Sailor Shifts Team and Oceanus City Council reference her in their communications, indicating she is monitored, discussed, or consulted in broader strategic contexts.\n\nThis combined view positions Nadia Conti as both a core communicator and a strategic figure of interest.",
+    "objectID": "In-class_Ex/In-class_Ex05.html#importing-json",
+    "href": "In-class_Ex/In-class_Ex05.html#importing-json",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "In the code chunk, fromJSON() of jsonlite package is used to import MC1_graph.json file into R and save the output subject\n\nkg &lt;- fromJSON(\"data/MC1_graph.json\")",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-nadias-network-involving-relationship-associated-events",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-nadias-network-involving-relationship-associated-events",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "c. Nadia’s Network involving Relationship, Associated Events",
-    "text": "c. Nadia’s Network involving Relationship, Associated Events\n\ndf &lt;- df %&gt;% clean_names()\n\ndf &lt;- df %&gt;%\n  mutate(\n    rel_label = str_remove(relationship, \"^Relationship_\"),\n    rel_label = str_remove(rel_label, \"_\\\\d+$\")\n  )\n\ndf &lt;- df %&gt;%\n  mutate(\n    event_type = case_when(\n      str_detect(event, \"Event_Monitoring_\") ~ \"Monitoring\",\n      str_detect(event, \"Event_Assessment_\") ~ \"Assessment\",\n      str_detect(event, \"Event_VesselMovement_\") ~ \"VesselMovement\",\n      TRUE ~ \"Other\"\n    )\n  )\n\nsender_nodes &lt;- df %&gt;%\n  distinct(id = sender, label = sender, group = sender_type)\n\nreceiver_nodes &lt;- df %&gt;%\n  distinct(id = receiver, label = receiver, group = receiver_type)\n\ncomm_nodes &lt;- df %&gt;%\n  distinct(id = message_id, label = message_id, group = \"Communication\")\n\nrel_nodes &lt;- df %&gt;%\n  distinct(id = relationship, label = rel_label, group = \"Relationship\")\n\nevent_nodes &lt;- df %&gt;%\n  distinct(id = event, label = event, group = event_type)\n\nmonitoring_entities &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Monitoring_\")) %&gt;%\n  select(monitoring_type, findings, target, source) %&gt;%\n  pivot_longer(everything(), values_to = \"id\") %&gt;%\n  distinct(id) %&gt;%\n  mutate(label = id, group = \"MonitoringAttribute\")\n\nassessment_entities &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Assessment_\")) %&gt;%\n  select(assessment_type, results) %&gt;%\n  pivot_longer(everything(), values_to = \"id\") %&gt;%\n  distinct(id) %&gt;%\n  mutate(label = id, group = \"AssessmentAttribute\")\n\nmovement_entities &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_VesselMovement_\")) %&gt;%\n  select(movement_type, destination) %&gt;%\n  pivot_longer(everything(), values_to = \"id\") %&gt;%\n  distinct(id) %&gt;%\n  mutate(label = id, group = \"MovementAttribute\")\n\nnodes &lt;- bind_rows(\n  sender_nodes,\n  receiver_nodes,\n  comm_nodes,\n  rel_nodes,\n  event_nodes,\n  monitoring_entities,\n  assessment_entities,\n  movement_entities\n) %&gt;% distinct(id, .keep_all = TRUE)\n\nedges1 &lt;- df %&gt;%\n  transmute(from = sender, to = message_id)\n\nedges2 &lt;- df %&gt;%\n  transmute(from = message_id, to = receiver)\n\nedges3 &lt;- df %&gt;%\n  transmute(from = message_id, to = relationship)\n\nedges4 &lt;- df %&gt;%\n  transmute(from = message_id, to = event)\n\nmonitoring_edges &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Monitoring_\")) %&gt;%\n  select(event, monitoring_type, findings, target, source) %&gt;%\n  pivot_longer(-event, values_to = \"to\") %&gt;%\n  transmute(from = event, to)\n\nassessment_edges &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_Assessment_\")) %&gt;%\n  select(event, assessment_type, results) %&gt;%\n  pivot_longer(-event, values_to = \"to\") %&gt;%\n  transmute(from = event, to)\n\nmovement_edges &lt;- df %&gt;%\n  filter(str_detect(event, \"Event_VesselMovement_\")) %&gt;%\n  select(event, movement_type, destination) %&gt;%\n  pivot_longer(-event, values_to = \"to\") %&gt;%\n  transmute(from = event, to)\n\nedges &lt;- bind_rows(edges1, edges2, edges3, edges4, monitoring_edges, assessment_edges, movement_edges) %&gt;%\n  filter(!is.na(from), !is.na(to))\n\nvisNetwork(nodes, edges) %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 123) %&gt;%\n  visLegend()\n\n\n\n\n\n\n🕵️‍ Investigation Note\nThis comprehensive network visualization, while not delivering an instant or singular insight, is extremely valuable in tracing the entire structure of interactions, particularly across Communication, Event, and Relationship nodes.\nIt allows:\n\nObserve how entities like Nadia Conti interact with others through both direct and indirect links.\nTrace evidence paths back to events or inferred relationships (e.g., Colleague, Suspicious).\nIdentify clusters, recurring actors, and potential outliers.\nExplore multi-hop connections that may reveal hidden influences or coordinated behavior.",
+    "objectID": "In-class_Ex/In-class_Ex05.html#inspecting-structure",
+    "href": "In-class_Ex/In-class_Ex05.html#inspecting-structure",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "str(kg, max.level = 1)\n\nList of 5\n $ directed  : logi TRUE\n $ multigraph: logi TRUE\n $ graph     :List of 2\n $ nodes     :'data.frame': 17412 obs. of  10 variables:\n $ links     :'data.frame': 37857 obs. of  4 variables:",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-mention-network",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-mention-network",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "b. Mention Network",
-    "text": "b. Mention Network\n\nevent_keywords &lt;- list(\n  Permit = c(\"permit\", \"approval\", \"cr-7844\", \"documentation\", \"expedite\", \"sign[- ]?off\"),\n  Construction = c(\"underwater foundation\", \"equipment\", \"build\", \"structure\", \"concrete\"),\n  Patrol = c(\"patrol\", \"reroute\", \"surveillance\", \"harbor master\", \"schedule\", \"redirect\"),\n  Coordination = c(\"meet\", \"confirm\", \"setup\", \"staff\", \"shift\", \"manifest\"),\n  Bribery = c(\"payment\", \"fee\", \"double\", \"favor\", \"compensation\"),\n  CoverUp = c(\"destroy\", \"cancel\", \"unaware\", \"discreet\", \"nothing to be concerned\")\n)\n\nclassify_event_primary &lt;- function(text) {\n  for (type in names(event_keywords)) {\n    pattern &lt;- paste(event_keywords[[type]], collapse = \"|\")\n    if (str_detect(tolower(text), pattern)) {\n      return(type)\n    }\n  }\n  return(\"General\")\n}\n\n\nmessages &lt;- messages %&gt;%\n  mutate(Primary_Event = sapply(content, classify_event_primary))\n\nmessages &lt;- messages %&gt;%\n  mutate(timestamp = ymd_hms(timestamp))  # adjust if your timestamp format differs\n\nggplot(messages, aes(x = timestamp, fill = Primary_Event)) +\n  geom_histogram(binwidth = 3600 * 6, color = \"black\", position = \"stack\") +  # 6-hour bin\n  labs(title = \"Timeline of Primary Event Types\",\n       x = \"Time\", y = \"Number of Messages\") +\n  theme_minimal() +\n  theme(legend.position = \"right\")\n\n\n\n\n\n\n\n\n\n🕵 Investigation Note: Temporal Patterns in Event Messaging\nThis timeline reveals distinct fluctuations in the communication volume tied to various primary event types over the first half of October.\nKey observations:\n\nPermit-related messages consistently dominate across most days, suggesting either heightened regulatory activity or strategic cover through official channels.\nConstruction and Coordination events spike on alternating days, hinting at phased or interleaved operations—potentially indicative of coordinated efforts to build and conceal.\nCoverUp and Patrol events are frequent but irregular, possibly serving as reactive or routine measures.\nBribery appears only sporadically, but its presence—especially when aligned with high Construction or Permit volume—may signal corruption intertwined with infrastructure expansion."
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-direct-communication-network-center-nadia-1",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-direct-communication-network-center-nadia-1",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "a. Direct Communication Network (Center = Nadia)",
-    "text": "a. Direct Communication Network (Center = Nadia)\n\nnadia_related &lt;- bind_rows(nadia_msgs, mentions_nadia_by_others) %&gt;%\n  distinct(message_id, .keep_all = TRUE)\n\nevent_keywords &lt;- list(\n  Permit = c(\"permit\", \"approval\", \"cr-7844\", \"documentation\", \"expedite\", \"sign[- ]?off\"),\n  Construction = c(\"underwater foundation\", \"equipment\", \"build\", \"structure\", \"concrete\"),\n  Patrol = c(\"patrol\", \"reroute\", \"surveillance\", \"harbor master\", \"schedule\", \"redirect\"),\n  Coordination = c(\"meet\", \"confirm\", \"setup\", \"staff\", \"shift\", \"manifest\"),\n  Bribery = c(\"payment\", \"fee\", \"double\", \"favor\", \"compensation\"),\n  CoverUp = c(\"destroy\", \"cancel\", \"unaware\", \"discreet\", \"nothing to be concerned\")\n)\n\nclassify_event_primary &lt;- function(text) {\n  for (type in names(event_keywords)) {\n    pattern &lt;- paste(event_keywords[[type]], collapse = \"|\")\n    if (str_detect(tolower(text), pattern)) {\n      return(type)\n    }\n  }\n  return(\"General\")\n}\n\nnadia_related &lt;- nadia_related %&gt;%\n  mutate(Primary_Event = sapply(content, classify_event_primary))\n\nggplot(nadia_related, aes(x = timestamp, fill = Primary_Event)) +\n  geom_histogram(binwidth = 3600 * 6, color = \"black\", position = \"stack\") +\n  labs(title = \"Nadia Conti's Timeline of Event Types\",\n       x = \"Time\", y = \"Number of Messages\") +\n  theme_minimal() +\n  theme(legend.position = \"right\")\n\n\n\n\n\n\n\n\n\n🕵️ Investigation Note: Nadia’s Timeline Reveals a Sharp Surge in High-Risk Events\n– October 8–10: Nadia is simultaneously involved in Permit, Construction, and Patrol event types — an uncommon triad that aligns with suspicious activity spikes across the overall timeline.\n– Construction-related activity by Nadia spikes only during these days — suggesting her involvement is both selective and strategic.\n– Nadia maintains a persistent role in Permit operations, with consistent involvement across multiple dates — notably Oct 6, 8, 12, and 14.\n– Bribery and CoverUp events, though present in the broader dataset, are absent from Nadia’s direct messages, indicating possible delegation of those actions to others (e.g., Davis, Liam).\n\n\nnadia_actor_events &lt;- nadia_related %&gt;%\n  select(sender, receiver, Primary_Event) %&gt;%\n  pivot_longer(cols = c(sender, receiver), names_to = \"role\", values_to = \"actor\") %&gt;%\n  group_by(actor, Primary_Event) %&gt;%\n  summarise(n = n(), .groups = \"drop\") %&gt;%\n  group_by(actor) %&gt;%\n  filter(sum(n) &gt;= 2) %&gt;%  \n  ungroup()\n\nggplot(nadia_actor_events, aes(x = Primary_Event, y = fct_reorder(actor, -n), fill = n)) +\n  geom_tile(color = \"white\") +\n  scale_fill_gradient(low = \"white\", high = \"#cc0000\") +\n  labs(title = \"Actors Involved in Nadia-Related Messages by Event Type\",\n       x = \"Event Type\", y = \"Actor\",\n       fill = \"Message Count\") +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-october-8th",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#a.-october-8th",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "a. October 8th",
-    "text": "a. October 8th\n\nnadia_related &lt;- bind_rows(nadia_msgs, mentions_nadia_by_others) %&gt;%\n  distinct(message_id, .keep_all = TRUE)\n\ndata(\"stop_words\")\n\nmessages_oct8 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-08\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct8 &lt;- messages_oct8 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct8, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 8, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Keyword Patterns Suggest Nadia’s Strategic Role on October 8\n\nOn October 8, the term nadia dominates keyword frequency, confirming she is at the center of message activity.\n\nHigh-ranking keywords such as reef, nemo, neptune, and marina suggest operational ties to maritime locations—particularly around Nemo Reef, a previously flagged hotspot.\n\nTerms like foundation, equipment, and modified imply ongoing construction or infrastructure adjustments, likely related to permit or logistics planning.\n\nTemporal indicators such as tomorrow and tonight reflect time-sensitive coordination, possibly for execution phases or inspections.\n\nThe presence of davis, elise, and mako reinforces the idea of a multi-party operation, where Nadia may be issuing directives or receiving critical updates.\n\nKeywords like payment, documentation, and finalize may indicate backend efforts to legitimize or complete operations—possibly tied to permitting or coverup.",
+    "objectID": "In-class_Ex/In-class_Ex05.html#extracting-and-inspecting",
+    "href": "In-class_Ex/In-class_Ex05.html#extracting-and-inspecting",
+    "title": "In-class Exercise 5",
+    "section": "",
+    "text": "nodes_tbl &lt;- as_tibble(kg$nodes)\nedges_tbl &lt;- as_tibble(kg$links)",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-october-10th",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-october-10th",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "b. October 10th",
-    "text": "b. October 10th\n\ndata(\"stop_words\")\n\nmessages_oct10 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-10\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct10 &lt;- messages_oct10 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct10, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 10, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()"
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-october-9th",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#b.-october-9th",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "b. October 9th",
-    "text": "b. October 9th\n\ndata(\"stop_words\")\n\nmessages_oct9 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-09\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct9 &lt;- messages_oct9 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct9, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 9, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 9 Messages Suggest Escalation and Operational Urgency\n\nThe uniform keyword distribution indicates broad coverage across themes, rather than dominance by a few topics—suggesting a multi-faceted coordination day.\n\nWords like urgent, escalating, and contingencies highlight a shift toward crisis response or risk mitigation, possibly reacting to earlier operations or external scrutiny.\n\nThe inclusion of underwater, installation, concrete, and structures implies active engineering work, potentially below surface level at or near Nemo Reef.\n\nPresence of clarification, confirmed, and forms points to paperwork, documentation, or verification processes, possibly in response to oversight or audit.\n\nNames like elise, miesel’s, and sam imply involvement of multiple actors and may reflect distributed tasking or compartmentalized responsibilities.\n\nTogether, these terms suggest Nadia may be coordinating a rapid deployment or adjustment phase—balancing both physical site actions and administrative coverage.",
+    "objectID": "In-class_Ex/In-class_Ex05.html#edge-type",
+    "href": "In-class_Ex/In-class_Ex05.html#edge-type",
+    "title": "In-class Exercise 5",
+    "section": "2.1. Edge Type",
+    "text": "2.1. Edge Type\n\nggplot(data = edges_tbl, \n       aes(y = `Edge Type`, fill = `Edge Type`)) +\n  geom_bar()",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-october-10th",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-october-10th",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "c. October 10th",
-    "text": "c. October 10th\n\ndata(\"stop_words\")\n\nmessages_oct10 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-10\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct10 &lt;- messages_oct10 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct10, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 10, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 10 Messages Emphasize Surveillance, Motives & Administrative Cover\n\nKeywords such as reef, nemo, and nadia remain highly prominent, maintaining the geographic and leadership focus around Nemo Reef operations.\n\nA strong presence of terms like ulterior, suspect, surveillance, and motives indicates internal concern or monitoring—possibly suggesting either external threat assessment or internal scrutiny.\n\nReferences to financial, claims, evidence, closure, and council imply administrative or legal maneuvering, hinting at preparations for regulatory defense or policy justification.\n\nTechnical terms such as parameters, tests, connection, alternate, and adaptation reflect reactive measures or system adjustments, likely tied to maintaining operational integrity.\n\nThe appearance of scientific, conservation, and city points toward public-facing narratives or environmental justifications, possibly being prepared to support legitimacy.\n\nTaken together, the October 10 keyword profile reflects a shift from action to risk management, political positioning, and narrative control.",
+    "objectID": "In-class_Ex/In-class_Ex05.html#node-type",
+    "href": "In-class_Ex/In-class_Ex05.html#node-type",
+    "title": "In-class Exercise 5",
+    "section": "2.2. Node Type",
+    "text": "2.2. Node Type\n\nggplot(data = nodes_tbl, \n       aes(y = `Node Type`, fill = `Node Type`)) +\n  geom_bar()",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-october-11th",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#c.-october-11th",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "c. October 11th",
-    "text": "c. October 11th\n\ndata(\"stop_words\")\n\nmessages_oct11 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-11\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct11 &lt;- messages_oct11 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct11, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 11, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()"
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#d.-october-11th",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#d.-october-11th",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "d. October 11th",
-    "text": "d. October 11th\n\ndata(\"stop_words\")\n\nmessages_oct11 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-11\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct11 &lt;- messages_oct11 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct11, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 11, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 11 Keywords Indicate Disruption, Surveillance & Response Planning\n\nThe appearance of terms like suspicious, questioning, and redirected points to a day marked by disruption or external scrutiny, likely triggering internal reassessment.\n\nLocation-based terms such as southwest, northern, and quadrant hint at regional segmentation of activity, possibly indicating where operations were either moved or monitored.\n\nKeywords like rov, ecovigil, and clean imply use of remote or environmental surveillance systems, suggesting heightened visibility or a cover effort.\n\nThe pairing of delay, contingency, and immediately strongly suggests crisis mitigation measures—either in planning or active execution.\n\nNadia and Liam are both mentioned, reinforcing the likelihood of collaborative leadership responding in real time.\n\nThe inclusion of operations, plan, and clean suggests that Oct 11 was a day of strategic pivot—realigning efforts to neutralize exposure or consolidate prior actions.",
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-1-mapping-from-node-id-to-row-index",
+    "href": "In-class_Ex/In-class_Ex05.html#step-1-mapping-from-node-id-to-row-index",
+    "title": "In-class Exercise 5",
+    "section": "3.1. Step 1: Mapping from node ID to row Index",
+    "text": "3.1. Step 1: Mapping from node ID to row Index\n\nid_map &lt;- tibble(id=nodes_tbl$id,\n                 index = seq_len(nrow(nodes_tbl)))\n\nThis ensures each id from your node list is mapped to the correct row number.",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#e.-october-12th",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#e.-october-12th",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "e. October 12th",
-    "text": "e. October 12th\n\ndata(\"stop_words\")\n\nmessages_oct12 &lt;- nadia_related %&gt;%\n  filter(date(timestamp) == as.Date(\"2040-10-12\")) %&gt;%\n  filter(!is.na(content), content != \"\")\n\ntop_words_oct12 &lt;- messages_oct12 %&gt;%\n  unnest_tokens(word, content) %&gt;%\n  filter(!word %in% stop_words$word) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  slice_max(n, n = 20)\n\nggplot(top_words_oct12, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#2171b5\") +\n  coord_flip() +\n  labs(title = \"Top Keywords in Nadia-Related Messages (Oct 12, 2040)\",\n       x = \"Keyword\", y = \"Frequency\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n🕵️‍ Investigation Note: Oct 12 Shows Administrative Push and Coordinated Movement\n\nNadia, permit, and meeting lead the keyword count, signaling a day focused on structured coordination, formalities, and approvals.\n\nTerms like 7844, cr, 0600, and 2100 suggest precise scheduling, perhaps involving coded operations or shift-based execution.\n\nFrequent mentions of documentation, team, security, and update point to active enforcement and reporting—possibly to align with oversight timelines.\n\nThe inclusion of tourism, closure, confidentiality, and appearance signals concern about public visibility and narrative control, potentially related to surface-level legitimacy.\n\nRodriguez, miesel, davis, remora, and neptune all appear, indicating multi-actor mobilization across personnel and vessels.\n\nOverall, Oct 12 reflects a day of heavy logistical enforcement and media-sensitive planning, likely to wrap or pivot operations with minimal disruption.",
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-2-map-source-and-target-ids-to-row-indices",
+    "href": "In-class_Ex/In-class_Ex05.html#step-2-map-source-and-target-ids-to-row-indices",
+    "title": "In-class Exercise 5",
+    "section": "3.2. Step 2: Map source and target IDs to row indices",
+    "text": "3.2. Step 2: Map source and target IDs to row indices\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n\n  rename(from = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n\n  rename(to = index)",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#f.-timeline-of-nadia-linked-operational-focus-oct-812-2040",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#f.-timeline-of-nadia-linked-operational-focus-oct-812-2040",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "f. Timeline of Nadia-Linked Operational Focus (Oct 8–12, 2040)",
-    "text": "f. Timeline of Nadia-Linked Operational Focus (Oct 8–12, 2040)",
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-3-filter-out-any-unmatched-invalid-edges",
+    "href": "In-class_Ex/In-class_Ex05.html#step-3-filter-out-any-unmatched-invalid-edges",
+    "title": "In-class Exercise 5",
+    "section": "3.3. Step 3: Filter out any unmatched (invalid) edges",
+    "text": "3.3. Step 3: Filter out any unmatched (invalid) edges\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  filter(!is.na(from), !is.na(to))",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#conclusion-do-the-visual-findings-support-cleppers-suspicion",
-    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#conclusion-do-the-visual-findings-support-cleppers-suspicion",
-    "title": "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3",
-    "section": "Conclusion: Do the Visual Findings Support Clepper’s Suspicion?",
-    "text": "Conclusion: Do the Visual Findings Support Clepper’s Suspicion?\nYes. Strongly.\n\nThe alignment between Nadia’s peaks in communication, permit-handling, and confirmed movement/construction at Nemo Reef (despite her claiming cancellation) supports Clepper’s suspicion.\nEven without direct messages showing illicit orders, visual analytics indicate:\n\nNadia controlled logistics, timelines, and access\nDelegated riskier operations (e.g., payment, surveillance diversion) to others\nObfuscated true operations under legal cover (permits)",
+    "objectID": "In-class_Ex/In-class_Ex05.html#step-4-creating-the-graph",
+    "href": "In-class_Ex/In-class_Ex05.html#step-4-creating-the-graph",
+    "title": "In-class Exercise 5",
+    "section": "3.4. Step 4: Creating the graph",
+    "text": "3.4. Step 4: Creating the graph\nLastly, tbl_graph is used to create tidygraph’s graph object by using the code junk below.\n\ngraph &lt;- tbl_graph(nodes = nodes_tbl, \n                   edges = edges_tbl,\n                   directed = kg$directed)",
     "crumbs": [
       "Home",
-      "Take-home Exercise",
-      "Take-home Exercise 2 - VAST Challenge 2025 - Mini Challenge 3"
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#visualizing-the-whole-graph",
+    "href": "In-class_Ex/In-class_Ex05.html#visualizing-the-whole-graph",
+    "title": "In-class Exercise 5",
+    "section": "4.1. Visualizing the whole graph",
+    "text": "4.1. Visualizing the whole graph\n\nggraph(graph, layout =\"fr\") + \n  geom_edge_link(aplpha = 0.3, colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), size = 4) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  theme_void()",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
+    ]
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex05.html#visualizing-the-sub-graph",
+    "href": "In-class_Ex/In-class_Ex05.html#visualizing-the-sub-graph",
+    "title": "In-class Exercise 5",
+    "section": "4.2. Visualizing the sub-graph",
+    "text": "4.2. Visualizing the sub-graph\nIn this section, we are interested to create a sub-graph based on MemberOf value in Edge_Type column of the edges column of the edge data frame.\n\n4.2.1. Step 1: Filter edges to only `MemberOf’\n\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;% \n  filter(`Edge Type` == \"MemberOf\")\n\n\n\n4.2.2. Step 2: Extract only connected nodes (i.e., used in these edges)\n\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique()\n\n\n\n4.2.3. Step 3: Keep only those nodes\n\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id)\n\n\n\n4.2.4. Step 4: Plot the sub-graph\n\nggraph(graph_memberof, layout = \"fr\") + \n  geom_edge_link(aplpha = 0.5, colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`), size = 1) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  theme_void()",
+    "crumbs": [
+      "Home",
+      "In-class Exercise",
+      "In-class Exercise 5"
     ]
   }
 ]
