@@ -1,5 +1,5 @@
 ---
-title: "Take-home Exercise 3 - VAST Challenge 2025 - Mini Challenge 3"
+title: "Take-home Exercise 3 - Prototyping Modules for Visual Analytics Shiny Application"
 author: "Nguyen Nguyen Ha (Summer)"
 date: "Jun 17, 2025"
 date-modified:  "Jun 17, 2025"
