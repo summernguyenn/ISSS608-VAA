@@ -109,7 +109,7 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex094.html"
           - text: "9.5 - Treemap Visualisation with R"
             href: "Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex095.html"
-          - text: "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+          - text: "10 - Information Dashboard Design: R methods"
             href: "Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html"
       - section: "Take-home Exercise"
         contents:
