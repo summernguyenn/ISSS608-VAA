@@ -1801,11 +1801,11 @@
     "href": "Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html",
     "title": "Hands-on Exercise 10 - Information Dashboard Design: R methods",
     "section": "",
-    "text": "pacman::p_load(lubridate, ggthemes, reactable,\nreactablefmtr, gt, gtExtras, tidyverse)\n\n\nThe downloaded binary packages are in\n    /var/folders/rm/2jmmtyy5329gr6t8h2k_zlpr0000gn/T//RtmpuI0rJo/downloaded_packages\n\n\n\nThe downloaded binary packages are in\n    /var/folders/rm/2jmmtyy5329gr6t8h2k_zlpr0000gn/T//RtmpuI0rJo/downloaded_packages\n\n\n\n\nThe code chunk below is used to import CoffeeChain.rds into R.\n\ncoffeechain &lt;- read_rds(\"data/CoffeeChain.rds\")\n\nThe code chunk below aggregates Sales and Budgeted Sales at the Product level.\n\nproduct &lt;- coffeechain %&gt;%\n  group_by(`Product`) %&gt;%\n  summarise(`target` = sum(`Budget Sales`),\n            `current` = sum(`Sales`)) %&gt;%\n  ungroup()\n\n\n\n\nThe code chunk below plots the bullet charts using ggplot2 functions.\n\nggplot(product, aes(Product, current)) + \n  geom_col(aes(Product, max(target) * 1.01),\n           fill=\"grey85\", width=0.85) +\n  geom_col(aes(Product, target * 0.75),\n           fill=\"grey60\", width=0.85) +\n  geom_col(aes(Product, target * 0.5),\n           fill=\"grey50\", width=0.85) +\n  geom_col(aes(Product, current), \n           width=0.35,\n           fill = \"black\") + \n  geom_errorbar(aes(y = target,\n                    x = Product, \n                    ymin = target,\n                    ymax= target), \n                width = .4,\n                colour = \"red\",\n                size = 1) +\n  coord_flip()",
+    "text": "For the purpose of this hands-on exercise, the following R packages will be used.\n\ntidyverse provides a collection of functions for performing data science task such as importing, tidying, wrangling data and visualising data. It is not a single package but a collection of modern R packages including but not limited to readr, tidyr, dplyr, ggplot, tibble, stringr, forcats and purrr.\nlubridate provides functions to work with dates and times more efficiently.\nggthemes is an extension of ggplot2. It provides additional themes beyond the basic themes of ggplot2.\ngtExtras provides some additional helper functions to assist in creating beautiful tables with gt, an R package specially designed for anyone to make wonderful-looking tables using the R programming language.\nreactable provides functions to create interactive data tables for R, based on the React Table library and made with reactR.\nreactablefmtr provides various features to streamline and enhance the styling of interactive reactable tables with easy-to-use and highly-customizable functions and themes.\n\n\n\nThe code chunk below is used to import CoffeeChain.rds into R.\n\ncoffeechain &lt;- read_rds(\"data/CoffeeChain.rds\")\n\nThe code chunk below aggregates Sales and Budgeted Sales at the Product level.\n\nproduct &lt;- coffeechain %&gt;%\n  group_by(`Product`) %&gt;%\n  summarise(`target` = sum(`Budget Sales`),\n            `current` = sum(`Sales`)) %&gt;%\n  ungroup()\n\n\n\n\nThe code chunk below plots the bullet charts using ggplot2 functions.\n\nggplot(product, aes(Product, current)) + \n  geom_col(aes(Product, max(target) * 1.01),\n           fill=\"grey85\", width=0.85) +\n  geom_col(aes(Product, target * 0.75),\n           fill=\"grey60\", width=0.85) +\n  geom_col(aes(Product, target * 0.5),\n           fill=\"grey50\", width=0.85) +\n  geom_col(aes(Product, current), \n           width=0.35,\n           fill = \"black\") + \n  geom_errorbar(aes(y = target,\n                    x = Product, \n                    ymin = target,\n                    ymax= target), \n                width = .4,\n                colour = \"red\",\n                size = 1) +\n  coord_flip()",
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1817,7 +1817,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1829,7 +1829,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1841,7 +1841,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1853,7 +1853,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1865,7 +1865,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1877,7 +1877,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1889,7 +1889,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1901,7 +1901,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1913,7 +1913,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1925,7 +1925,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1937,7 +1937,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1949,7 +1949,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1961,7 +1961,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1973,7 +1973,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1985,7 +1985,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {
@@ -1997,7 +1997,7 @@
     "crumbs": [
       "Home",
       "Hands-on Exercise",
-      "Hands-on Exerise 10 - Information Dashboard Design: R methods"
+      "10 - Information Dashboard Design: R methods"
     ]
   },
   {

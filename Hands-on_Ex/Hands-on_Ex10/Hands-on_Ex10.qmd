@@ -13,11 +13,19 @@ execute:
 ---
 
 # 1. Importing Microsoft Access database
-
-```{r}
+For the purpose of this hands-on exercise, the following R packages will be used.
+```{r, echo=FALSE}
 pacman::p_load(lubridate, ggthemes, reactable,
 reactablefmtr, gt, gtExtras, tidyverse)
 ```
+
+- `tidyverse` provides a collection of functions for performing data science task such as importing, tidying, wrangling data and visualising data. It is not a single package but a collection of modern R packages including but not limited to readr, tidyr, dplyr, ggplot, tibble, stringr, forcats and purrr.
+- `lubridate` provides functions to work with dates and times more efficiently.
+- `ggthemes` is an extension of ggplot2. It provides additional themes beyond the basic themes of ggplot2.
+- `gtExtras` provides some additional helper functions to assist in creating beautiful tables with gt, an R package specially designed for anyone to make wonderful-looking tables using the R programming language.
+- `reactable` provides functions to create interactive data tables for R, based on the React Table library and made with reactR.
+- `reactablefmtr` provides various features to streamline and enhance the styling of interactive reactable tables with easy-to-use and highly-customizable functions and themes.
+
 ## 1.1.Data Preparation
 
 
